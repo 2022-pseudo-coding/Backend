@@ -8,11 +8,10 @@
         <version>2.2.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>fudan.se</groupId>
-    <artifactId>lab3</artifactId>
+    <groupId>WEB3D</groupId>
+    <artifactId>project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lab3</name>
-    <description>2021 Fudan Software Engineering Lab3</description>
+    <name>project</name>
 
     <properties>
         <java.version>1.8</java.version>

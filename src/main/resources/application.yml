@@ -12,7 +12,7 @@ logging:
 jwt:
   token:
     validity: 18000000
-    secret: FdseFdse2021
+    secret: FdWeb3d
 spring:
   jackson:
     serialization:
@@ -21,9 +21,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/book?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
-    username: dms
-    password: Di17zufuwuqi*
+    url: jdbc:mysql://127.0.0.1:3306/web3d?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
     tomcat:
       max-wait: 10000
     dbcp2:
@@ -46,23 +46,7 @@ spring:
     multipart:
       enabled: true
       max-file-size: 50MB
-  mail:
-    host: smtp.163.com
-    # 暂时使用我的邮箱
-    username: woxihuanruanjian@163.com
-    password: SLWZLNQDYTNUMBJO
-    port: 465
-    default-encoding: UTF-8
-    protocol: smtp
-    properties:
-      mail.smtp.auth: true
-      mail:
-        smtp:
-          ssl:
-            enable: true
-      mail.smtp.socketFactory.port: 465
-      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
-      mail.smtp.socketFactory.fallback: false
+
 
 
 
