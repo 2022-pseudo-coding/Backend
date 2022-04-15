@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 public class AuthController {
 
@@ -46,5 +48,11 @@ public class AuthController {
                                             @RequestParam String token){
         logger.debug("Change password: User token = " + token);
         return ResponseEntity.ok(authService.changePassword(password,rePassword,token));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> checkToken(){
+        logger.debug("Expire user token");
+        return ResponseEntity.ok(new HashMap<>());
     }
 }

@@ -49,7 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/changePassword")
                 .permitAll()
-
+                .antMatchers("/refresh")
+                .hasAnyAuthority("User", "Admin")
                 //后续会更改为管理员才可上传
                 /*.antMatchers("/**")
                 .permitAll()*/

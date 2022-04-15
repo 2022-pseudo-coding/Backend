@@ -36,7 +36,7 @@ public class UserService {
         String password = request.getPassword();
 
         if (userRepository.findByUsername(username) != null) {
-            response.put("message","Username" + username + " has been registered");
+            response.put("message","Username " + username + " has been registered");
         } else if (Utils.registerIsInvalid(request)) {
             response.put("message","Invalid format of your register info");
         } else{

@@ -46,9 +46,11 @@ public class AuthService {
                     new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
             if (userRepository.findByUsername(loginRequest.getUsername()) == null) {
-                throw new UsernameNotFoundException(username);
+                result.put("message", "Username "+ loginRequest.getUsername()+ " not found!");
+                return result;
             } else if (!(new BCryptPasswordEncoder()).matches(password, userRepository.findByUsername(username).getPassword())) {
-                throw new PasswordIncorrectException(username);
+                result.put("message", "Password for "+ loginRequest.getUsername()+ " is not correct!");
+                return result;
             }
         }
         User user = (User) authentication.getPrincipal();
@@ -60,6 +62,7 @@ public class AuthService {
             //check for invalid type & no-auth situation
             throw new BadAuthRequestException();
         }
+        result.put("message", "success");
         result.put("token", jwtTokenUtil.generateToken(user));
         return result;
     }
@@ -91,7 +94,7 @@ public class AuthService {
             userRepository.save(user);
             result.put("message", "success");
         }
-
         return result;
     }
+
 }
