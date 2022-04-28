@@ -5,7 +5,7 @@ import WEB3D.exception.BadAuthRequestException;
 import WEB3D.exception.PasswordIncorrectException;
 import WEB3D.repository.*;
 import WEB3D.security.jwt.JwtTokenUtil;
-import WEB3D.domain.people.User;
+import WEB3D.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,6 +1,6 @@
 package WEB3D.repository;
 
-import WEB3D.domain.people.User;
+import WEB3D.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

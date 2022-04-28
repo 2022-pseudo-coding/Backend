@@ -6,7 +6,6 @@ package WEB3D.controller.request;
 public class LoginRequest {
     private String username;
     private String password;
-
     private String type;
 
     public LoginRequest(String username, String password, String type) {

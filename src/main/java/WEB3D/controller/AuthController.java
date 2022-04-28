@@ -5,10 +5,15 @@ import WEB3D.controller.request.RegisterRequest;
 import WEB3D.security.jwt.JwtTokenUtil;
 import WEB3D.service.AuthService;
 import WEB3D.service.UserService;
+import com.corundumstudio.socketio.SocketIOServer;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -55,4 +60,5 @@ public class AuthController {
         logger.debug("Expire user token");
         return ResponseEntity.ok(new HashMap<>());
     }
+
 }

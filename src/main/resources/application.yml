@@ -46,6 +46,16 @@ spring:
     multipart:
       enabled: true
       max-file-size: 50MB
+socketio:
+  host: 127.0.0.1
+  port: 9090
+  bossCount: 1
+  workCount: 100
+  allowCustomRequests: true
+  upgradeTimeout: 1000000
+  pingTimeout: 6000000
+  pingInterval: 25000
+
 
 
 

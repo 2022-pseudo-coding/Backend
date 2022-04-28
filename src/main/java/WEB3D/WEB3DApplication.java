@@ -1,14 +1,19 @@
 package WEB3D;
 
-import WEB3D.domain.people.Authority;
-import WEB3D.domain.people.User;
+import WEB3D.domain.Authority;
+import WEB3D.domain.User;
 import WEB3D.repository.AuthorityRepository;
 import WEB3D.repository.UserRepository;
+import com.corundumstudio.socketio.SocketIOServer;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -50,6 +55,24 @@ public class WEB3DApplication {
                 return authority;
             }
         };
+    }
+
+    //websocket
+    @Component
+    @Order(1)
+    @Slf4j
+    public static class ServerRunner implements CommandLineRunner {
+
+        private final SocketIOServer server;
+
+        @Autowired
+        public ServerRunner(SocketIOServer socketIOServer){
+            this.server = socketIOServer;
+        }
+        @Override
+        public void run(String... args) {
+            server.start();
+        }
     }
 }
 

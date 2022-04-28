@@ -1,4 +1,4 @@
-package WEB3D.domain.people;
+package WEB3D.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

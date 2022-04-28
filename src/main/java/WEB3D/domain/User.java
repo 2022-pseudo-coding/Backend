@@ -1,4 +1,4 @@
-package WEB3D.domain.people;
+package WEB3D.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

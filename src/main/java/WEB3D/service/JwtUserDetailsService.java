@@ -1,7 +1,7 @@
 package WEB3D.service;
 
 import WEB3D.repository.UserRepository;
-import WEB3D.domain.people.User;
+import WEB3D.domain.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

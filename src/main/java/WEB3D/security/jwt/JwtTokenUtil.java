@@ -1,6 +1,6 @@
 package WEB3D.security.jwt;
 
-import WEB3D.domain.people.User;
+import WEB3D.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -2,7 +2,7 @@ package WEB3D.service;
 
 import WEB3D.common.Utils;
 import WEB3D.controller.request.RegisterRequest;
-import WEB3D.domain.people.User;
+import WEB3D.domain.User;
 import WEB3D.repository.AuthorityRepository;
 import WEB3D.repository.UserRepository;
 import WEB3D.security.jwt.JwtTokenUtil;
