@@ -29,11 +29,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public Map<String, Object> register(RegisterRequest request) {
         Map<String, Object> response = new HashMap<>();
         String username = request.getUsername();
         String password = request.getPassword();
+        String modelName = request.getModelName();
 
         if (userRepository.findByUsername(username) != null) {
             response.put("message","Username " + username + " has been registered");
@@ -42,16 +42,12 @@ public class UserService {
         } else{
 
             User user = new User(username, (new BCryptPasswordEncoder()).encode(password),
-                    new HashSet<>(Collections.singletonList(authorityRepository.findByAuthority("User"))));
+                    new HashSet<>(Collections.singletonList(authorityRepository.findByAuthority("User"))),
+                    modelName);
             userRepository.save(user);
             response.put("message", "Register success!");
             response.put("id", user.getId());
         }
         return response;
     }
-
-
-
-
-
 }

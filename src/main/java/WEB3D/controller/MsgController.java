@@ -8,19 +8,18 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@Slf4j
 public class MsgController {
 
-    public static Map<String, UUID> map = new HashMap<>();
+    public static Map<String, UUID> map = new ConcurrentHashMap<>();
 
     private final SocketIOServer server;
 
@@ -42,8 +41,13 @@ public class MsgController {
             String username = jwtTokenUtil.getUsernameFromToken(token);
             client.joinRoom(room);
             map.put(username, client.getSessionId());
+
+            Map<String, String> broadcast = new HashMap<>();
+            broadcast.put("username", "123");
+            broadcast.put("modelName", "1234");
+            server.getRoomOperations(room).sendEvent("introduction", broadcast);
         } else {
-            log.error("客户端为空");
+//            log.error("客户端为空");
         }
     }
 

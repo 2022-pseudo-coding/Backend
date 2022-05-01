@@ -14,22 +14,22 @@ class JwtUserDetailsServiceTest {
     @Autowired
     private JwtUserDetailsService service;
 
-    @Test
-    public void noSuchUser() {
-        try {
-            service.loadUserByUsername("gulu");
-        }catch (UsernameNotFoundException ex){
-            assertEquals("gulu",ex.getMessage());
-        }
-    }
-
-    @Test
-    public void hasSuchUser() {
-        try {
-            service.loadUserByUsername("admin");
-        }catch (UsernameNotFoundException ex){
-            assertEquals("admin",ex.getMessage());
-        }
-
-    }
+//    @Test
+//    public void noSuchUser() {
+//        try {
+//            service.loadUserByUsername("gulu");
+//        }catch (UsernameNotFoundException ex){
+//            assertEquals("gulu",ex.getMessage());
+//        }
+//    }
+//
+//    @Test
+//    public void hasSuchUser() {
+//        try {
+//            service.loadUserByUsername("admin");
+//        }catch (UsernameNotFoundException ex){
+//            assertEquals("admin",ex.getMessage());
+//        }
+//
+//    }
 }

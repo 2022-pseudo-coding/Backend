@@ -21,15 +21,26 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String modelName;
+
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
 
 
-    public User() {}
-    public User(String username, String password, Set<Authority> authorities) {
+    public User() {
+    }
+
+    public User(String username, String password, Set<Authority> authorities){
         this.username = username;
-        this.password= password;
+        this.password = password;
         this.authorities = authorities;
+    }
+
+    public User(String username, String password, Set<Authority> authorities, String modelName) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+        this.modelName = modelName;
     }
 
     @Override
@@ -75,15 +86,19 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public Set<String> getAuthoritiesString(){
+    public Set<String> getAuthoritiesString() {
         Set<String> temp = new HashSet<>();
-        for(Authority auth : authorities){
+        for (Authority auth : authorities) {
             temp.add(auth.getAuthority());
         }
         return temp;
+    }
+
+    public String getModelName() {
+        return modelName;
     }
 }

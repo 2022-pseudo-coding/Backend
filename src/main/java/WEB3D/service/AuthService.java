@@ -63,6 +63,7 @@ public class AuthService {
             throw new BadAuthRequestException();
         }
         result.put("message", "success");
+        result.put("modelName", user.getModelName());
         result.put("token", jwtTokenUtil.generateToken(user));
         return result;
     }

@@ -5,32 +5,28 @@ import WEB3D.controller.request.RegisterRequest;
 import WEB3D.security.jwt.JwtTokenUtil;
 import WEB3D.service.AuthService;
 import WEB3D.service.UserService;
-import com.corundumstudio.socketio.SocketIOServer;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class AuthController {
 
     private final AuthService authService;
-    private final UserService readerService;
+    private final UserService userService;
     private final JwtTokenUtil jwtTokenUtil;
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
-    public AuthController(AuthService authService, UserService readerService, JwtTokenUtil jwtTokenUtil) {
+    public AuthController(AuthService authService, UserService userService, JwtTokenUtil jwtTokenUtil) {
         this.authService = authService;
-        this.readerService = readerService;
+        this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
@@ -38,7 +34,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         logger.debug("RegistrationForm: " + request.toString());
-        return ResponseEntity.ok(readerService.register(request));
+        return ResponseEntity.ok(userService.register(request));
     }
 
     @PostMapping("/login")
@@ -55,10 +51,13 @@ public class AuthController {
         return ResponseEntity.ok(authService.changePassword(password,rePassword,token));
     }
 
-    @PostMapping("/refresh")
+    @GetMapping("/refresh")
     public ResponseEntity<?> checkToken(){
         logger.debug("Expire user token");
-        return ResponseEntity.ok(new HashMap<>());
+        System.out.println("refresh");
+        Map<String, String> result = new HashMap<>();
+        result.put("token", "ok");
+        return ResponseEntity.ok(result);
     }
 
 }

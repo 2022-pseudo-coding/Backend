@@ -5,7 +5,6 @@ import WEB3D.domain.User;
 import WEB3D.repository.AuthorityRepository;
 import WEB3D.repository.UserRepository;
 import com.corundumstudio.socketio.SocketIOServer;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -60,7 +59,6 @@ public class WEB3DApplication {
     //websocket
     @Component
     @Order(1)
-    @Slf4j
     public static class ServerRunner implements CommandLineRunner {
 
         private final SocketIOServer server;
