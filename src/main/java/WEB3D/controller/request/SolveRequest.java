@@ -7,12 +7,15 @@ import java.util.List;
 public class SolveRequest {
     private String id;
     private String token;
-    private List<Instruction> insts;
+    private List<Instruction> instructions;
 
-    public SolveRequest(String id, String token, List<Instruction> insts) {
+    public SolveRequest() {
+    }
+
+    public SolveRequest(String id, String token, List<Instruction> instructions) {
         this.id = id;
         this.token = token;
-        this.insts = insts;
+        this.instructions = instructions;
     }
 
     public String getId() {
@@ -23,7 +26,7 @@ public class SolveRequest {
         return token;
     }
 
-    public List<Instruction> getInsts() {
-        return insts;
+    public List<Instruction> getInstructions() {
+        return instructions;
     }
 }
