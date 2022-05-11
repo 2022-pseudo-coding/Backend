@@ -11,11 +11,14 @@ import WEB3D.repository.ProblemRepository;
 import WEB3D.repository.SolutionRepository;
 import WEB3D.repository.UserRepository;
 import WEB3D.security.jwt.JwtTokenUtil;
+import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -40,8 +43,15 @@ public class ProblemService {
     }
 
     public Map<String, Object> problem(ProblemRequest problemRequest) {
+        //test
         Map<String, Object> result = new HashMap<>();
-
+        List<Instruction> list = new ArrayList<>();
+        list.add(new Instruction("1", "2", true, 0, 0));
+        list.add(new Instruction("2", "3", true, 1, 10));
+        Problem problem  = new Problem("title", "description", list);
+        list.add(new Instruction("5", "6", true, 1, 10));
+        problem.addSolution(new Solution("1", 10, 10, list));
+        result.put("problem", problem);
         return result;
     }
 

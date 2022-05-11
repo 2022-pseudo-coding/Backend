@@ -1,8 +1,9 @@
 package WEB3D.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Problem {
@@ -15,10 +16,10 @@ public class Problem {
     private String description;
 
     @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Instruction> instructions;
+    private List<Instruction> instructions = new ArrayList<>();
 
     @OneToMany(targetEntity = Solution.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Solution> solutions;
+    private Set<Solution> solutions = new LinkedHashSet<>();
 
     public Problem() {
     }
@@ -43,5 +44,9 @@ public class Problem {
 
     public List<Solution> getSolutions() {
         return new ArrayList<>(solutions);
+    }
+
+    public void addSolution(Solution solution) {
+        solutions.add(solution);
     }
 }

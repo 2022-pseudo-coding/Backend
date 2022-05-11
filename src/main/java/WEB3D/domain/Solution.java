@@ -9,29 +9,27 @@ public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @ManyToOne(targetEntity = Problem.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Problem problem;
+    private String problemId;
 
     private int steps;
 
     private int numInst;
 
     @ManyToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Instruction> insts;
+    private List<Instruction> instructions = new ArrayList<>();
 
     public Solution() {
     }
 
-    public Solution(Problem problem, int steps, int numInst, List<Instruction> insts) {
-        this.problem = problem;
+    public Solution(String problemId, int steps, int numInst, List<Instruction> instructions) {
+        this.problemId = problemId;
         this.steps = steps;
         this.numInst = numInst;
-        this.insts = insts;
+        this.instructions = instructions;
     }
 
-    public Problem getProblem() {
-        return problem;
+    public String getProblemId() {
+        return problemId;
     }
 
     public int getSteps() {
@@ -42,7 +40,7 @@ public class Solution {
         return numInst;
     }
 
-    public List<Instruction> getInsts() {
-        return new ArrayList<>(insts);
+    public List<Instruction> getInstructions() {
+        return new ArrayList<>(instructions);
     }
 }

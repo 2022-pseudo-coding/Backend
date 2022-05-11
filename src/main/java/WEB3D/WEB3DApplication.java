@@ -43,6 +43,10 @@ public class WEB3DApplication {
                     );
                     userRepository.save(admin);
                 }
+
+                //initiate problems
+
+
             }
 
             private Authority getOrCreateAuthority(String authorityText, AuthorityRepository authorityRepository) {

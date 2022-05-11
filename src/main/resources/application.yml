@@ -24,7 +24,6 @@ spring:
 #    docker
 #    url: jdbc:mysql://mysql:3306/web3d?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     username: root
-#    password: root
     password: 123456
     tomcat:
       max-wait: 10000
