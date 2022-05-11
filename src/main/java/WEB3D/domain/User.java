@@ -26,6 +26,9 @@ public class User implements UserDetails {
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private List<Solution> solutions;
+
 
     public User() {
     }

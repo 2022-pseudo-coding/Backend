@@ -1,8 +1,5 @@
 package WEB3D.controller.request;
 
-/**
- * @author LBW
- */
 public class LoginRequest {
     private String username;
     private String password;

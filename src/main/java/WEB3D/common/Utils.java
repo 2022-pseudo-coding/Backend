@@ -24,5 +24,4 @@ public class Utils {
     public static boolean isStrNotNull(String str){
         return (str != null) && (!"".equals(str));
     }
-    //后续可加入更多的静态方法
 }
