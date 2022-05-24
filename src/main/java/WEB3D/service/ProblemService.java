@@ -11,7 +11,6 @@ import WEB3D.repository.ProblemRepository;
 import WEB3D.repository.SolutionRepository;
 import WEB3D.repository.UserRepository;
 import WEB3D.security.jwt.JwtTokenUtil;
-import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
