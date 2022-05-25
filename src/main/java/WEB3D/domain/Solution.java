@@ -9,7 +9,7 @@ public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String problemId;
+    private Long problemId;
 
     private int steps;
 
@@ -21,14 +21,14 @@ public class Solution {
     public Solution() {
     }
 
-    public Solution(String problemId, int steps, int numInst, List<Instruction> instructions) {
+    public Solution(Long problemId, int steps, int numInst, List<Instruction> instructions) {
         this.problemId = problemId;
         this.steps = steps;
         this.numInst = numInst;
         this.instructions = instructions;
     }
 
-    public String getProblemId() {
+    public Long getProblemId() {
         return problemId;
     }
 
