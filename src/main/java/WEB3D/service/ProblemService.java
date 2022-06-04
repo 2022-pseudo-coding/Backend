@@ -47,10 +47,7 @@ public class ProblemService {
         List<Instruction> list = new ArrayList<>();
         list.add(new Instruction("1", "2", true, 0, 0));
         list.add(new Instruction("2", "3", true, 1, 10));
-        Problem problem  = new Problem("title", "description", list);
-        list.add(new Instruction("5", "6", true, 1, 10));
-        problem.addSolution(new Solution(1L, 10, 10, list));
-        result.put("problem", problem);
+
         return result;
     }
 

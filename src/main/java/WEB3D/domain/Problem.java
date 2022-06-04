@@ -11,9 +11,17 @@ public class Problem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private int stage;
+    private int number;
     private String title;
 
     private String description;
+
+    private String input;
+    private String output;
+
+    //initial status of memory
+    private String memory;
 
     @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Instruction> instructions = new ArrayList<>();
@@ -24,10 +32,21 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(String title, String description, List<Instruction> instructions) {
+    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory) {
+        this.stage = stage;
+        this.number = number;
         this.title = title;
         this.description = description;
         this.instructions = instructions;
+        this.input = input;
+        this.output = output;
+        this.memory = memory;
+    }
+
+    public int getStage(){return stage;}
+
+    public int getNumber() {
+        return number;
     }
 
     public String getTitle() {
@@ -44,6 +63,14 @@ public class Problem {
 
     public List<Solution> getSolutions() {
         return new ArrayList<>(solutions);
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public String getOutput() {
+        return output;
     }
 
     public void addSolution(Solution solution) {

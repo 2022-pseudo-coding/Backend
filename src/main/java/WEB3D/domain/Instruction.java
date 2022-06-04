@@ -32,6 +32,10 @@ public class Instruction {
         this.jumpTo = jumpTo;
     }
 
+    public Instruction(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
