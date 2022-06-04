@@ -98,4 +98,18 @@ public class AuthService {
         return result;
     }
 
+    public Map<String, Object> center(String token) {
+        Map<String, Object> result = new HashMap<>();
+        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        if (user == null) {
+            result.put("message", "You are using a bad credential");
+            return result;
+        }
+        result.put("message", "success");
+        result.put("username", user.getUsername());
+        result.put("modelName", user.getModelName());
+        result.put("solutions", user.getSolutions());
+        return result;
+    }
+
 }

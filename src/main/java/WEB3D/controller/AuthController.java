@@ -1,5 +1,6 @@
 package WEB3D.controller;
 
+import WEB3D.controller.request.ChangePasswordRequest;
 import WEB3D.controller.request.LoginRequest;
 import WEB3D.controller.request.RegisterRequest;
 import WEB3D.security.jwt.JwtTokenUtil;
@@ -44,20 +45,22 @@ public class AuthController {
     }
 
     @PostMapping("/changePassword")
-    public ResponseEntity<?> changePassword(@RequestParam String password,
-                                            @RequestParam String rePassword,
-                                            @RequestParam String token){
-        logger.debug("Change password: User token = " + token);
-        return ResponseEntity.ok(authService.changePassword(password,rePassword,token));
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        return ResponseEntity.ok(authService.changePassword(request.getPassword(), request.getRePassword(), request.getToken()));
     }
 
     @GetMapping("/refresh")
-    public ResponseEntity<?> checkToken(){
+    public ResponseEntity<?> checkToken() {
         logger.debug("Expire user token");
         System.out.println("refresh");
         Map<String, String> result = new HashMap<>();
         result.put("token", "ok");
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/center")
+    public ResponseEntity<?> center(@RequestParam String token) {
+        return ResponseEntity.ok(authService.center(token));
     }
 
 }
