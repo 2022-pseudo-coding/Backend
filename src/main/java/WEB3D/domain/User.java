@@ -103,6 +103,14 @@ public class User implements UserDetails {
         return temp;
     }
 
+    public List<Solution> getSolutions() {
+        return solutions;
+    }
+
+    public void addSolution(Solution solution) {
+        this.solutions.add(solution);
+    }
+
     public String getModelName() {
         return modelName;
     }
