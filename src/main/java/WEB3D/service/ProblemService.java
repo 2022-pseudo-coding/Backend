@@ -42,12 +42,15 @@ public class ProblemService {
     }
 
     public Map<String, Object> problem(ProblemRequest problemRequest) {
-        //test
         Map<String, Object> result = new HashMap<>();
-        List<Instruction> list = new ArrayList<>();
-        list.add(new Instruction("1", "2", true, 0, 0));
-        list.add(new Instruction("2", "3", true, 1, 10));
-
+        Problem problem = problemRepository.findByStageAndNumber(problemRequest.getStage(), problemRequest.getNumber());
+        if (problem != null) {
+            result.put("problem", problem);
+            result.put("message", "success");
+        }
+        else {
+            result.put("message", "problem not found");
+        }
         return result;
     }
 

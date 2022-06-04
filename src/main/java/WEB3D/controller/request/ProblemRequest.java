@@ -1,14 +1,20 @@
 package WEB3D.controller.request;
 
 public class ProblemRequest {
-    private String id;
+    private String stage;
+    private String number;
 
     public ProblemRequest() {}
-    public ProblemRequest(String id){
-        this.id = id;
+    public ProblemRequest(String stage, String number){
+        this.stage = stage;
+        this.number = number;
     }
 
-    public String getId() {
-        return id;
+    public String getStage() {
+        return stage;
+    }
+
+    public String getNumber() {
+        return number;
     }
 }

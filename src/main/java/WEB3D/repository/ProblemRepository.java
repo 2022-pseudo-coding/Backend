@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
-    Problem findByStageAndNumber(int stage, int number);
+    Problem findByStageAndNumber(String stage, String number);
 }
