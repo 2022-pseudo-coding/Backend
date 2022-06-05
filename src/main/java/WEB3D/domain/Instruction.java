@@ -15,8 +15,6 @@ public class Instruction {
 
     private String color;
 
-    private boolean canJump;
-
     private int referTo;
 
     private int jumpTo;
@@ -24,16 +22,40 @@ public class Instruction {
     public Instruction() {
     }
 
-    public Instruction(String name, String color, boolean canJump, int referTo, int jumpTo) {
+    public Instruction(String name, String color, int referTo, int jumpTo) {
         this.name = name;
         this.color = color;
-        this.canJump = canJump;
         this.referTo = referTo;
         this.jumpTo = jumpTo;
     }
 
     public Instruction(String name) {
         this.name = name;
+        switch (name) {
+            case "inbox" : {}
+            case "outbox" : {
+                this.color = "green";
+                break;
+            }
+            case "copyfrom" : {}
+            case "copyto" : {
+                this.color = "red";
+                break;
+            }
+            case "add" : {}
+            case "sub" : {}
+            case "bump+" : {}
+            case "bump-" : {
+                this.color = "orange";
+                break;
+            }
+            case "jump" : {}
+            case "jump_zero" : {}
+            case "jump_neg" : {
+                this.color = "blue";
+                break;
+            }
+        }
     }
 
     public Long getId() {
@@ -46,10 +68,6 @@ public class Instruction {
 
     public String getColor() {
         return color;
-    }
-
-    public boolean isCanJump() {
-        return canJump;
     }
 
     public int getReferTo() {

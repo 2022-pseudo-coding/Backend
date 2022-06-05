@@ -5,21 +5,27 @@ import WEB3D.domain.Instruction;
 import java.util.List;
 
 public class SolveRequest {
-    private String id;
+    private String stage;
+    private String number;
     private String token;
     private List<Instruction> instructions;
 
     public SolveRequest() {
     }
 
-    public SolveRequest(String id, String token, List<Instruction> instructions) {
-        this.id = id;
+    public SolveRequest(String stage, String number, String token, List<Instruction> instructions) {
+        this.stage = stage;
+        this.number = number;
         this.token = token;
         this.instructions = instructions;
     }
 
-    public String getId() {
-        return id;
+    public String getStage() {
+        return stage;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public String getToken() {

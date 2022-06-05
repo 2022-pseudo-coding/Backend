@@ -9,7 +9,8 @@ public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long problemId;
+    private int stage;
+    private int number;
 
     private int steps;
 
@@ -21,17 +22,21 @@ public class Solution {
     public Solution() {
     }
 
-    public Solution(Long problemId, int steps, int numInst, List<Instruction> instructions) {
-        this.problemId = problemId;
+    public Solution(int stage, int number, int steps, int numInst, List<Instruction> instructions) {
+        this.stage = stage;
+        this.number = number;
         this.steps = steps;
         this.numInst = numInst;
         this.instructions = instructions;
     }
 
-    public Long getProblemId() {
-        return problemId;
+    public int getStage() {
+        return stage;
     }
 
+    public int getNumber() {
+        return number;
+    }
     public int getSteps() {
         return steps;
     }

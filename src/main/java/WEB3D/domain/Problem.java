@@ -11,8 +11,8 @@ public class Problem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String stage;
-    private String number;
+    private int stage;
+    private int number;
     private String title;
 
     private String description;
@@ -32,7 +32,7 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(String stage, String number, String title, String description, List<Instruction> instructions, String input, String output, String memory) {
+    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory) {
         this.stage = stage;
         this.number = number;
         this.title = title;
@@ -43,9 +43,9 @@ public class Problem {
         this.memory = memory;
     }
 
-    public String getStage(){return stage;}
+    public int getStage(){return stage;}
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -71,6 +71,10 @@ public class Problem {
 
     public String getOutput() {
         return output;
+    }
+
+    public String getMemory() {
+        return memory;
     }
 
     public void addSolution(Solution solution) {

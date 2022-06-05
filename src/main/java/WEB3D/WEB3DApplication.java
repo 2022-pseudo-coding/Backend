@@ -89,8 +89,8 @@ public class WEB3DApplication {
                 }
                 String title = childNodes.item(nodeIndex.get(0)).getTextContent();
                 String description = childNodes.item(nodeIndex.get(1)).getTextContent();
-                String stage = childNodes.item(nodeIndex.get(2)).getTextContent();
-                String number = childNodes.item(nodeIndex.get(3)).getTextContent();
+                int stage = Integer.parseInt(childNodes.item(nodeIndex.get(2)).getTextContent());
+                int number = Integer.parseInt(childNodes.item(nodeIndex.get(3)).getTextContent());
                 String[] instructionArray = childNodes.item(nodeIndex.get(4)).getTextContent().split(";");
                 List<Instruction> instructions = new ArrayList<>();
                 for (String instruction : instructionArray) {
