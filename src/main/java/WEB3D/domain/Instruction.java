@@ -22,11 +22,31 @@ public class Instruction {
     public Instruction() {
     }
 
-    public Instruction(String name, String color, int referTo, int jumpTo) {
-        this.name = name;
-        this.color = color;
-        this.referTo = referTo;
-        this.jumpTo = jumpTo;
+    public Instruction(String name, int to) {
+        this(name);
+        switch (name) {
+            case "copyfrom" : {}
+            case "copyto" : {}
+            case "add" : {}
+            case "sub" : {}
+            case "bump+" : {}
+            case "bump-" : {
+                this.referTo = to;
+                this.jumpTo = -1;
+                break;
+            }
+            case "jump" : {}
+            case "jump_zero" : {}
+            case "jump_neg" : {
+                this.jumpTo = to;
+                this.referTo = -1;
+                break;
+            }
+            default: {
+                this.jumpTo = -1;
+                this.referTo = -1;
+            }
+        }
     }
 
     public Instruction(String name) {

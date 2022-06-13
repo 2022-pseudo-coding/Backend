@@ -1,5 +1,6 @@
 package WEB3D.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Status {
@@ -13,9 +14,13 @@ public class Status {
     private int steps;
 
     public Status(List<String> input, List<String> output, String[] memory, String hand) {
-        this.input = input;
-        this.output = output;
-        this.memory = memory;
+        //deep copy
+        this.input = new ArrayList<>(input);
+        this.output = new ArrayList<>(output);
+        if (memory != null) {
+            this.memory = new String[memory.length];
+            System.arraycopy(memory, 0, this.memory, 0, memory.length);
+        }
         this.hand = hand;
     }
 

@@ -50,18 +50,27 @@ public class Utils {
             if (!found)
                 throw new ExecInstructionException("forbidden instruction used!");
         }
-        List<String> input = Arrays.asList(problem.getInput().split(";"));
+
+        List<String> input = new ArrayList<>(Arrays.asList(problem.getInput().split(";")));
         List<String> output = new ArrayList<>();
-        List<String> answer = Arrays.asList(problem.getOutput().split(";"));
+        List<String> answer = new ArrayList<>(Arrays.asList(problem.getOutput().split(";")));
 
         String[] temp = problem.getMemory().split(";");
-        String[] memory = new String[Integer.parseInt(temp[0])];
-        for (int i = 0; i < memory.length; i++) {
-            if (temp[i + 1].equals("-"))
-                memory[i] = null;
-            else
-                memory[i] = temp[i + 1];
+        int length = Integer.parseInt(temp[0]);
+        String[] memory;
+        if (length == 0) {
+            memory = null;
         }
+        else {
+            memory = new String[length];
+            for (int i = 0; i < memory.length; i++) {
+                if (temp[i + 1].equals("-"))
+                    memory[i] = null;
+                else
+                    memory[i] = temp[i + 1];
+            }
+        }
+
         int steps = 0;
         int inst_index = 0;
         boolean exception = false;
@@ -96,7 +105,11 @@ public class Utils {
                 }
                 case "copyfrom" : {
                     int referTo = instruction.getReferTo();
-                    if (referTo < 0 || referTo >= memory.length) {
+                    if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
+                    }
+                    else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
                         finishStatusMsg = "memory index out of bound!";
                     }
@@ -109,6 +122,10 @@ public class Utils {
                     if (hand == null) {
                         exception = true;
                         finishStatusMsg = "nothing in hand";
+                    }
+                    else if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
                     }
                     else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
@@ -124,6 +141,10 @@ public class Utils {
                         exception = true;
                         finishStatusMsg = "nothing in hand";
                     }
+                    else if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
+                    }
                     else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
                         finishStatusMsg = "memory index out of bound!";
@@ -138,6 +159,10 @@ public class Utils {
                         exception = true;
                         finishStatusMsg = "nothing in hand";
                     }
+                    else if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
+                    }
                     else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
                         finishStatusMsg = "memory index out of bound!";
@@ -148,7 +173,11 @@ public class Utils {
                 }
                 case "bump+" : {
                     int referTo = instruction.getReferTo();
-                    if (referTo < 0 || referTo >= memory.length) {
+                    if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
+                    }
+                    else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
                         finishStatusMsg = "memory index out of bound!";
                     }
@@ -161,7 +190,11 @@ public class Utils {
                 }
                 case "bump-" : {
                     int referTo = instruction.getReferTo();
-                    if (referTo < 0 || referTo >= memory.length) {
+                    if (memory == null) {
+                        exception = true;
+                        finishStatusMsg = "memory not available!";
+                    }
+                    else if (referTo < 0 || referTo >= memory.length) {
                         exception = true;
                         finishStatusMsg = "memory index out of bound!";
                     }
@@ -179,7 +212,7 @@ public class Utils {
                         finishStatusMsg = "jumpTo index out of bound!";
                     }
                     else
-                        inst_index = jumpTo;
+                        inst_index = jumpTo - 1;
                     break;
                 }
                 case "jump_zero" : {
@@ -193,8 +226,8 @@ public class Utils {
                         finishStatusMsg = "nothing in hand !";
                     }
                     else {
-                        if (Integer.parseInt(hand) == 0) {
-                            inst_index = jumpTo;
+                        if (isNumeric(hand) && Integer.parseInt(hand) == 0) {
+                            inst_index = jumpTo - 1;
                         }
                     }
                     break;
@@ -211,18 +244,16 @@ public class Utils {
                     }
                     else {
                         if (Integer.parseInt(hand) < 0) {
-                            inst_index = jumpTo;
+                            inst_index = jumpTo - 1;
                         }
                     }
                     break;
                 }
-                default : {
-                    if (exception)
-                        statusList.add(new Status(finishStatusMsg, steps));
-                    else
-                        statusList.add(new Status(input, output, memory, hand));
-                }
             }
+            if (exception)
+                statusList.add(new Status(finishStatusMsg, steps));
+            else
+                statusList.add(new Status(input, output, memory, hand));
             inst_index++;
             steps++;
             if (steps > 1000) {
