@@ -31,7 +31,7 @@ public class ProblemController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @GetMapping("/problem")
+    @PostMapping("/problem")
     public ResponseEntity<?> problem(@RequestBody ProblemRequest request) {
         return ResponseEntity.ok(problemService.problem(request));
     }
