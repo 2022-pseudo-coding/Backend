@@ -42,7 +42,7 @@ public class ProblemService {
 
     public Map<String, Object> problem(ProblemRequest problemRequest) {
         Map<String, Object> result = new HashMap<>();
-        if (!isNumeric(problemRequest.getStage()) || !isNumeric(problemRequest.getNumber())){
+        if (!isNumeric(problemRequest.getStage()) || !isNumeric(problemRequest.getNumber())) {
             result.put("message", "bad argument");
             return result;
         }
@@ -52,8 +52,7 @@ public class ProblemService {
         if (problem != null) {
             result.put("problem", problem);
             result.put("message", "success");
-        }
-        else {
+        } else {
             result.put("message", "problem not found");
         }
         return result;
@@ -66,15 +65,15 @@ public class ProblemService {
         result.put("problems", problems);
         String token = mapSolvedRequest.getToken();
         User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
-        if(user == null){
+        if (user == null) {
             result.put("message", "User does not exist");
             return result;
         }
         // get system-defined problem count
         result.put("mapSolved", getMapSolved(user, stage));
         Set<String> instructions = new HashSet<>();
-        for (Problem problem:problems){
-            for(Instruction instruction:problem.getInstructions()){
+        for (Problem problem : problems) {
+            for (Instruction instruction : problem.getInstructions()) {
                 instructions.add(instruction.getName());
             }
         }
@@ -82,7 +81,7 @@ public class ProblemService {
         return result;
     }
 
-    public Map<String, Object> userDefine(UserDefineRequest request){
+    public Map<String, Object> userDefine(UserDefineRequest request) {
         Map<String, Object> result = new HashMap<>();
         String token = request.getToken();
         int stage = request.getStage();
@@ -90,24 +89,24 @@ public class ProblemService {
         String instructions = request.getInstructions();
         String[] instructionNames = instructions.split(";");
         List<Instruction> instructionList = new ArrayList<>();
-        for(String instName:instructionNames){
+        for (String instName : instructionNames) {
             instructionList.add(new Instruction(instName));
         }
 
         // sanity check
         User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
-        if(user == null){
+        if (user == null) {
             result.put("message", "User does not exist");
             return result;
         }
-        if(stage < 1 || stage > 3){
+        if (stage < 1 || stage > 3) {
             result.put("message", "Invalid stage number");
             return result;
         }
 
         List<Problem> problems = problemRepository.findAllByStage(stage);
         problems.sort(Comparator.comparingInt(Problem::getNumber));
-        int currNumber = problems.get(problems.size()-1).getNumber() + 1;
+        int currNumber = problems.get(problems.size() - 1).getNumber() + 1;
         Problem newProblem = new Problem(stage,
                 currNumber,
                 request.getTitle(),
@@ -117,12 +116,13 @@ public class ProblemService {
         newProblem.setIfUserDefined(true);
         problemRepository.save(newProblem);
         result.put("message", "success");
+        result.put("name", newProblem.getStage() + "-" + newProblem.getNumber());
         return result;
     }
 
     public Map<String, Object> solve(SolveRequest solveRequest) {
         Map<String, Object> result = new HashMap<>();
-        if (!isNumeric(solveRequest.getStage()) || !isNumeric(solveRequest.getNumber())){
+        if (!isNumeric(solveRequest.getStage()) || !isNumeric(solveRequest.getNumber())) {
             result.put("message", "bad argument");
             return result;
         }
@@ -134,8 +134,7 @@ public class ProblemService {
         List<Status> statusList = new ArrayList<>();
         try {
             statusList = Utils.execInstructions(problem, instructions);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             result.put("message", e.getMessage());
             return result;
         }
@@ -149,28 +148,27 @@ public class ProblemService {
             problemRepository.save(problem);
             result.put("message", "success");
             result.put("mapSolved", getMapSolved(user, stage));
-        }
-        else
+        } else
             result.put("message", finalStatus.getFinishStatusMsg());
 
         result.put("statusList", statusList);
         return result;
     }
 
-    private boolean getMapSolved(User user, int stage){
+    private boolean getMapSolved(User user, int stage) {
         // get system-defined problem count
         int systemProblemCount = 0;
         List<Problem> systemProblems = problemRepository.findAllByStage(stage);
-        for(Problem problem:systemProblems){
-            if(!problem.isIfUserDefined()){
+        for (Problem problem : systemProblems) {
+            if (!problem.isIfUserDefined()) {
                 systemProblemCount++;
             }
         }
 
         List<Solution> solutions = user.getSolutions();
         Set<Integer> solved = new HashSet<>();
-        for(Solution solution: solutions){
-            if(stage == solution.getStage()){
+        for (Solution solution : solutions) {
+            if (stage == solution.getStage()) {
                 solved.add(solution.getNumber());
             }
         }
