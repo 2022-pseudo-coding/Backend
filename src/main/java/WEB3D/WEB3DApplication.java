@@ -112,21 +112,5 @@ public class WEB3DApplication {
             e.printStackTrace();
         }
     }
-    //websocket
-    @Component
-    @Order(1)
-    public static class ServerRunner implements CommandLineRunner {
-
-        private final SocketIOServer server;
-
-        @Autowired
-        public ServerRunner(SocketIOServer socketIOServer){
-            this.server = socketIOServer;
-        }
-        @Override
-        public void run(String... args) {
-            server.start();
-        }
-    }
 }
 

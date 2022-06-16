@@ -92,15 +92,21 @@ public class Utils {
                     break;
                 }
                 case "outbox" : {
-                    output.add(hand);
-                    hand = null;
-                    int size = output.size();
-                    if (!output.get(size - 1).equals(answer.get(size - 1))) {
+                    if (hand == null) {
                         exception = true;
-                        finishStatusMsg = "output error!";
+                        finishStatusMsg = "nothing for output! you must inbox or copyfrom first";
                     }
-                    else if (size == answer.size())
-                        finish = true;
+                    else {
+                        output.add(hand);
+                        hand = null;
+                        int size = output.size();
+                        if (!output.get(size - 1).equals(answer.get(size - 1))) {
+                            exception = true;
+                            finishStatusMsg = "output error!";
+                        }
+                        else if (size == answer.size())
+                            finish = true;
+                    }
                     break;
                 }
                 case "copyfrom" : {
