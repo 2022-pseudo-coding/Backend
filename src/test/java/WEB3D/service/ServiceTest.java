@@ -76,6 +76,8 @@ public class ServiceTest {
 
     @Test
     public void solveTest_2_1(){
+        Map<String, Object> m = authService.login(new LoginRequest("admin", "password", "admin"));
+        String token = m.get("token").toString();
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction("inbox"));
         instructions.add(new Instruction("copyto", 0));
