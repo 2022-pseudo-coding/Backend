@@ -3,6 +3,7 @@ package WEB3D.controller;
 import WEB3D.controller.request.MapSolvedRequest;
 import WEB3D.controller.request.ProblemRequest;
 import WEB3D.controller.request.SolveRequest;
+import WEB3D.controller.request.UserDefineRequest;
 import WEB3D.domain.Problem;
 import WEB3D.security.jwt.JwtTokenUtil;
 import WEB3D.service.AuthService;
@@ -36,9 +37,14 @@ public class ProblemController {
         return ResponseEntity.ok(problemService.problem(request));
     }
 
-    @GetMapping("/mapSolved")
-    public ResponseEntity<?> mapSolved(@RequestBody MapSolvedRequest request) {
-        return ResponseEntity.ok(problemService.mapSolved(request));
+    @PostMapping("/mapProblems")
+    public ResponseEntity<?> mapProblems(@RequestBody MapSolvedRequest request) {
+        return ResponseEntity.ok(problemService.mapProblems(request));
+    }
+
+    @PostMapping("/userDefine")
+    public ResponseEntity<?> userDefine(@RequestBody UserDefineRequest request){
+        return ResponseEntity.ok(problemService.userDefine(request));
     }
 
     @PostMapping("/solve")

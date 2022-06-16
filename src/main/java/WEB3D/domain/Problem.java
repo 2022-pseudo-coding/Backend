@@ -23,6 +23,11 @@ public class Problem {
     //initial status of memory
     private String memory;
 
+    // default to be false
+    private boolean ifUserDefined = false;
+
+    private String worldInfo;
+
     @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Instruction> instructions = new ArrayList<>();
 
@@ -32,7 +37,7 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory) {
+    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory, String worldInfo) {
         this.stage = stage;
         this.number = number;
         this.title = title;
@@ -41,6 +46,7 @@ public class Problem {
         this.input = input;
         this.output = output;
         this.memory = memory;
+        this.worldInfo = worldInfo;
     }
 
     public int getStage(){return stage;}
@@ -79,5 +85,17 @@ public class Problem {
 
     public void addSolution(Solution solution) {
         solutions.add(solution);
+    }
+
+    public boolean isIfUserDefined() {
+        return ifUserDefined;
+    }
+
+    public void setIfUserDefined(boolean ifUserDefined){
+        this.ifUserDefined = ifUserDefined;
+    }
+
+    public String getWorldInfo() {
+        return worldInfo;
     }
 }
