@@ -24,18 +24,10 @@ public class ServiceTest {
     @Autowired
     private AuthService authService;
 
-    private String token;
-
-    @BeforeEach
-    public void before() {
-        Map<String, Object> map = authService.login(new LoginRequest("admin", "password", "admin"));
-        token = map.get("token").toString();
-    }
-
     @Test
     public void solveTest_1_1() {
         Map<String, Object> m = authService.login(new LoginRequest("admin", "password", "admin"));
-        token = m.get("token").toString();
+        String token = m.get("token").toString();
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction("outbox"));
         SolveRequest solveRequest = new SolveRequest("1", "1", token, instructions);
@@ -44,6 +36,8 @@ public class ServiceTest {
 
     @Test
     public void solveTest_1_2() {
+        Map<String, Object> m = authService.login(new LoginRequest("admin", "password", "admin"));
+        String token = m.get("token").toString();
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction("inbox"));
         instructions.add(new Instruction("outbox"));
@@ -54,6 +48,8 @@ public class ServiceTest {
 
     @Test
     public void solveTest_1_3(){
+        Map<String, Object> m = authService.login(new LoginRequest("admin", "password", "admin"));
+        String token = m.get("token").toString();
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction("copyfrom", 4));
         instructions.add(new Instruction("outbox"));
@@ -67,6 +63,8 @@ public class ServiceTest {
 
     @Test
     public void solveTest_1_5(){
+        Map<String, Object> m = authService.login(new LoginRequest("admin", "password", "admin"));
+        String token = m.get("token").toString();
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new Instruction("inbox"));
         instructions.add(new Instruction("jump_zero", 0));
