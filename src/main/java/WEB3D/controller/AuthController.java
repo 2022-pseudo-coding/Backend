@@ -1,9 +1,11 @@
 package WEB3D.controller;
 
+import WEB3D.controller.request.CenterRequest;
 import WEB3D.controller.request.ChangePasswordRequest;
 import WEB3D.controller.request.LoginRequest;
 import WEB3D.controller.request.RegisterRequest;
 import WEB3D.security.jwt.JwtTokenUtil;
+import WEB3D.service.AdminService;
 import WEB3D.service.AuthService;
 import WEB3D.service.UserService;
 import org.slf4j.Logger;
@@ -20,15 +22,17 @@ public class AuthController {
 
     private final AuthService authService;
     private final UserService userService;
+    private final AdminService adminService;
     private final JwtTokenUtil jwtTokenUtil;
 
     Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @Autowired
-    public AuthController(AuthService authService, UserService userService, JwtTokenUtil jwtTokenUtil) {
+    public AuthController(AuthService authService, UserService userService, JwtTokenUtil jwtTokenUtil, AdminService adminService) {
         this.authService = authService;
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.adminService = adminService;
     }
 
 
@@ -49,18 +53,14 @@ public class AuthController {
         return ResponseEntity.ok(authService.changePassword(request.getPassword(), request.getRePassword(), request.getToken()));
     }
 
-    @GetMapping("/refresh")
-    public ResponseEntity<?> checkToken() {
-        logger.debug("Expire user token");
-        System.out.println("refresh");
-        Map<String, String> result = new HashMap<>();
-        result.put("token", "ok");
-        return ResponseEntity.ok(result);
+    @PostMapping("/center")
+    public ResponseEntity<?> center(@RequestBody CenterRequest request) {
+        return ResponseEntity.ok(authService.center(request.getToken()));
     }
 
-    @PostMapping("/center")
-    public ResponseEntity<?> center(@RequestParam String token) {
-        return ResponseEntity.ok(authService.center(token));
+    @GetMapping("/admin/center")
+    public ResponseEntity<?> adminCenter() {
+        return ResponseEntity.ok(adminService.adminCenter());
     }
 
 }

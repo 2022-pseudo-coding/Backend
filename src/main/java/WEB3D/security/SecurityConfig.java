@@ -38,17 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/welcome2")
-                .permitAll()
                 //登录与注册开放所有权限
                 .antMatchers("/login")
                 .permitAll()
                 .antMatchers("/register")
                 .permitAll()
-                .antMatchers("/changePassword")
-                .permitAll()
-                .antMatchers("/refresh")
-                .hasAnyAuthority("User", "Admin")
+                .antMatchers("/changePassword", "/center", "/problem", "/mapProblems", "/userDefine", "/solve")
+                .hasAnyAuthority("User")
+                .antMatchers("/admin/**")
+                .hasAnyAuthority("Admin")
                 //后续会更改为管理员才可上传
                 /*.antMatchers("/**")
                 .permitAll()*/
