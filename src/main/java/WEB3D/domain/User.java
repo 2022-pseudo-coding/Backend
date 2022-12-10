@@ -121,4 +121,7 @@ public class User implements UserDetails {
     public List<Project> getProjects() {
         return projects;
     }
+    public void addProjects(Project project){
+        projects.add(project);
+    }
 }
