@@ -12,7 +12,7 @@ public class Project {
 
 
     private Long creatorId;
-    private String name;
+    private String title;
     private String description;
     @OneToMany(targetEntity = Module.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Module> modules = new ArrayList<>();
@@ -21,9 +21,9 @@ public class Project {
     }
 
 
-    public Project(Long creatorId, String name, String description) {
+    public Project(Long creatorId, String title, String description) {
         this.creatorId = creatorId;
-        this.name = name;
+        this.title = title;
         this.description = description;
     }
 
@@ -36,8 +36,8 @@ public class Project {
         return creatorId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getDescription() {

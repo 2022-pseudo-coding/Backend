@@ -31,6 +31,9 @@ public class User implements UserDetails {
     @OneToMany(targetEntity = Solution.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Solution> solutions = new ArrayList<>();
 
+    @OneToMany(targetEntity = Project.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Project> projects = new ArrayList<>();
+
 
     public User() {
     }
