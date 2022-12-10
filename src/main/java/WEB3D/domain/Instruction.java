@@ -76,6 +76,8 @@ public class Instruction {
                 break;
             }
         }
+        this.jumpTo = -1;
+        this.referTo = -1;
     }
 
     public Long getId() {
