@@ -10,7 +10,6 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     private Long creatorId;
     private String title;
     private String description;

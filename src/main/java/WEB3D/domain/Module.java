@@ -11,8 +11,8 @@ public class Module {
     private Long id;
     private String title;
     private String description;
-    @OneToMany(targetEntity = Problem.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Problem> problems = new ArrayList<>();
+    @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Instruction> instructions = new ArrayList<>();
 
     public Module(String title, String description) {
         this.title = title;
@@ -23,10 +23,19 @@ public class Module {
 
     }
 
-    public List<Problem> getProblems() {
-        return problems;
+    public String getTitle() {
+        return title;
     }
-    public void addModule(Problem module){
-        this.problems.add(module);
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
     }
 }

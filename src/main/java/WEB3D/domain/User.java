@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private List<Solution> solutions = new ArrayList<>();
 
     @OneToMany(targetEntity = Project.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Project> projects = new ArrayList<>();
+    private Set<Project> projects = new HashSet<>();
 
 
     public User() {
@@ -118,7 +118,7 @@ public class User implements UserDetails {
         return modelName;
     }
 
-    public List<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
     public void addProjects(Project project){
