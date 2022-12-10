@@ -21,4 +21,11 @@ public class Module {
     public Module() {
 
     }
+
+    public List<Problem> getProblems() {
+        return problems;
+    }
+    public void addModule(Problem module){
+        this.problems.add(module);
+    }
 }

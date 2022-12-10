@@ -117,4 +117,8 @@ public class User implements UserDetails {
     public String getModelName() {
         return modelName;
     }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
 }

@@ -2,13 +2,13 @@ package WEB3D.controller.request;
 
 public class UserDefineModuleRequest {
     private String token;
-    private int ProjectNumber;
+    private int projectNumber;
     private String title;
     private String description;
 
     public UserDefineModuleRequest(String token, int projectNumber, String title, String description) {
         this.token = token;
-        ProjectNumber = projectNumber;
+        projectNumber = projectNumber;
         this.title = title;
         this.description = description;
     }
@@ -26,6 +26,6 @@ public class UserDefineModuleRequest {
     }
 
     public int getProjectNumber() {
-        return ProjectNumber;
+        return projectNumber;
     }
 }
