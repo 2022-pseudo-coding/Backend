@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Status {
+    private int instIndex;
     private List<String> input;
     private List<String> output;
     private String[] memory;
@@ -13,7 +14,7 @@ public class Status {
 
     private int steps;
 
-    public Status(List<String> input, List<String> output, String[] memory, String hand) {
+    public Status(List<String> input, List<String> output, String[] memory, String hand, int instIndex) {
         //deep copy
         this.input = new ArrayList<>(input);
         this.output = new ArrayList<>(output);
@@ -22,6 +23,7 @@ public class Status {
             System.arraycopy(memory, 0, this.memory, 0, memory.length);
         }
         this.hand = hand;
+        this.instIndex = instIndex;
     }
 
     public Status(String finishStatusMsg, int steps) {
@@ -51,5 +53,9 @@ public class Status {
 
     public int getSteps() {
         return steps;
+    }
+
+    public int getInstIndex() {
+        return instIndex;
     }
 }

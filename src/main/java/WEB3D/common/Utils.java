@@ -259,7 +259,7 @@ public class Utils {
             if (exception)
                 statusList.add(new Status(finishStatusMsg, steps));
             else
-                statusList.add(new Status(input, output, memory, hand));
+                statusList.add(new Status(input, output, memory, hand, instructions.indexOf(instruction)));
             inst_index++;
             steps++;
             if (steps > 1000) {
