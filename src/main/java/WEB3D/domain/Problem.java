@@ -11,6 +11,8 @@ public class Problem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    private int projectId;
     private int stage;
     private int number;
     private String title;
@@ -37,7 +39,8 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory, String worldInfo) {
+    public Problem(int projectId,int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory, String worldInfo) {
+        this.projectId = projectId;
         this.stage = stage;
         this.number = number;
         this.title = title;
@@ -49,7 +52,13 @@ public class Problem {
         this.worldInfo = worldInfo;
     }
 
-    public int getStage(){return stage;}
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public int getStage() {
+        return stage;
+    }
 
     public int getNumber() {
         return number;
@@ -91,7 +100,7 @@ public class Problem {
         return ifUserDefined;
     }
 
-    public void setIfUserDefined(boolean ifUserDefined){
+    public void setIfUserDefined(boolean ifUserDefined) {
         this.ifUserDefined = ifUserDefined;
     }
 

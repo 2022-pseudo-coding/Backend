@@ -8,13 +8,13 @@ import java.util.List;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private Long creatorId;
     private String title;
     private String description;
-    @OneToMany(targetEntity = Module.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Module> modules = new ArrayList<>();
+    @OneToMany(targetEntity = Problem.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Problem> problems = new ArrayList<>();
 
     public Project() {
     }
@@ -27,7 +27,7 @@ public class Project {
     }
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -43,15 +43,15 @@ public class Project {
         return description;
     }
 
-    public List<Module> getModules() {
-        return modules;
+    public List<Problem> getProblems() {
+        return problems;
     }
 
-    public void addModule(Module module){
-        this.modules.add(module);
+    public void addProblem(Problem problem) {
+        this.problems.add(problem);
     }
 
     private int getLength() {
-        return this.modules.size();
+        return this.problems.size();
     }
 }

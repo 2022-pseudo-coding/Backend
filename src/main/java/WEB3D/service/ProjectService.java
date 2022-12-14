@@ -38,7 +38,7 @@ public class ProjectService {
         }
         Project project = new Project(user.getId(),projectRequest.getTitle(),projectRequest.getDescription());
         projectRepository.save(project);
-        result.put("message", "success");
+        result.put("message", "Project created successfully");
         return result;
     }
 }

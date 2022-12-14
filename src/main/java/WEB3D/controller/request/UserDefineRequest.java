@@ -3,6 +3,7 @@ package WEB3D.controller.request;
 public class UserDefineRequest {
     private String token;
 
+    private int projectId;
     private int stage;
 
     private String title;
@@ -21,6 +22,10 @@ public class UserDefineRequest {
         return token;
     }
 
+    public int getProjectId() {
+        return projectId;
+    }
+
     public int getStage() {
         return stage;
     }
@@ -37,7 +42,7 @@ public class UserDefineRequest {
         return input;
     }
 
-    public String getWorldInfo(){
+    public String getWorldInfo() {
         return worldInfo;
     }
 

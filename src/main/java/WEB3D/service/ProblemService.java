@@ -6,10 +6,7 @@ import WEB3D.controller.request.SolveRequest;
 import WEB3D.controller.request.UserDefineRequest;
 import WEB3D.domain.*;
 import WEB3D.common.Utils;
-import WEB3D.repository.InstructionRepository;
-import WEB3D.repository.ProblemRepository;
-import WEB3D.repository.SolutionRepository;
-import WEB3D.repository.UserRepository;
+import WEB3D.repository.*;
 import WEB3D.security.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +22,7 @@ public class ProblemService {
     private final ProblemRepository problemRepository;
     private final SolutionRepository solutionRepository;
     private final InstructionRepository instructionRepository;
+    private final ProjectRepository projectRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -33,11 +31,12 @@ public class ProblemService {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    public ProblemService(UserRepository userRepository, ProblemRepository problemRepository, SolutionRepository solutionRepository, InstructionRepository instructionRepository) {
+    public ProblemService(UserRepository userRepository, ProblemRepository problemRepository, SolutionRepository solutionRepository, InstructionRepository instructionRepository, ProjectRepository projectRepository) {
         this.userRepository = userRepository;
         this.problemRepository = problemRepository;
         this.solutionRepository = solutionRepository;
         this.instructionRepository = instructionRepository;
+        this.projectRepository = projectRepository;
     }
 
     public Map<String, Object> problem(ProblemRequest problemRequest) {
@@ -46,9 +45,10 @@ public class ProblemService {
             result.put("message", "bad argument");
             return result;
         }
+        int projectId = Integer.parseInt(problemRequest.getProjectId());
         int stage = Integer.parseInt(problemRequest.getStage());
         int number = Integer.parseInt(problemRequest.getNumber());
-        Problem problem = problemRepository.findByStageAndNumber(stage, number);
+        Problem problem = problemRepository.findByStageAndNumberAndProjectId(stage, number, projectId);
         if (problem != null) {
             result.put("problem", problem);
             result.put("message", "success");
@@ -85,6 +85,10 @@ public class ProblemService {
         Map<String, Object> result = new HashMap<>();
         String token = request.getToken();
         int stage = request.getStage();
+        int projectId = request.getProjectId();
+
+        Optional<Project> projectById = projectRepository.findById(projectId);
+        Project project = projectById.get();
 
         String instructions = request.getInstructions();
         String[] instructionNames = instructions.split(";");
@@ -107,7 +111,8 @@ public class ProblemService {
         List<Problem> problems = problemRepository.findAllByStage(stage);
         problems.sort(Comparator.comparingInt(Problem::getNumber));
         int currNumber = problems.get(problems.size() - 1).getNumber() + 1;
-        Problem newProblem = new Problem(stage,
+        Problem newProblem = new Problem(projectId,
+                stage,
                 currNumber,
                 request.getTitle(),
                 request.getDescription(),
@@ -115,6 +120,8 @@ public class ProblemService {
                 request.getInput(), request.getOutput(), request.getMemory(), request.getWorldInfo());
         newProblem.setIfUserDefined(true);
         problemRepository.save(newProblem);
+        project.addProblem(newProblem);
+        projectRepository.save(project);
         result.put("message", "success");
         result.put("name", newProblem.getStage() + "-" + newProblem.getNumber());
         return result;

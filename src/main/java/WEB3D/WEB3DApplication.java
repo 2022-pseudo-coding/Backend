@@ -100,11 +100,12 @@ public class WEB3DApplication {
                 String output = childNodes.item(nodeIndex.get(6)).getTextContent();
                 String memory = childNodes.item(nodeIndex.get(7)).getTextContent();
                 String worldInfo = childNodes.item(nodeIndex.get(8)).getTextContent();
+                int projectId  = Integer.parseInt(childNodes.item(nodeIndex.get(9)).getTextContent());
 
                 if (problemRepository.findByStageAndNumber(stage, number) != null) {
                     continue;
                 }
-                Problem problem = new Problem(stage, number, title, description, instructions, input, output, memory, worldInfo);
+                Problem problem = new Problem(projectId,stage, number, title, description, instructions, input, output, memory, worldInfo);
                 problemRepository.save(problem);
             }
         }
