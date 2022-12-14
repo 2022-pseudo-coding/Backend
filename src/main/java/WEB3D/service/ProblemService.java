@@ -45,6 +45,25 @@ public class ProblemService {
             result.put("message", "bad argument");
             return result;
         }
+        int stage = Integer.parseInt(problemRequest.getStage());
+        int number = Integer.parseInt(problemRequest.getNumber());
+
+        Problem problem = problemRepository.findByStageAndNumber(stage,number);
+        if (problem != null) {
+            result.put("problem", problem);
+            result.put("message", "success");
+        } else {
+            result.put("message", "problem not found");
+        }
+        return result;
+    }
+
+    public Map<String, Object> problemWithId(ProblemRequest problemRequest) {
+        Map<String, Object> result = new HashMap<>();
+        if (!isNumeric(problemRequest.getStage()) || !isNumeric(problemRequest.getNumber())) {
+            result.put("message", "bad argument");
+            return result;
+        }
         int projectId = Integer.parseInt(problemRequest.getProjectId());
         int stage = Integer.parseInt(problemRequest.getStage());
         int number = Integer.parseInt(problemRequest.getNumber());

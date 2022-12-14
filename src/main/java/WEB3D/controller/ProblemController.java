@@ -37,6 +37,11 @@ public class ProblemController {
         return ResponseEntity.ok(problemService.problem(request));
     }
 
+    @PostMapping("/problemWithId")
+    public ResponseEntity<?> problemWithId(@RequestBody ProblemRequest request) {
+        return ResponseEntity.ok(problemService.problemWithId(request));
+    }
+
     @PostMapping("/mapProblems")
     public ResponseEntity<?> mapProblems(@RequestBody MapSolvedRequest request) {
         return ResponseEntity.ok(problemService.mapProblems(request));

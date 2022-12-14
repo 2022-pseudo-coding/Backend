@@ -11,5 +11,4 @@ import java.util.List;
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
     Problem findByStageAndNumber(int stage, int number);
     List<Problem> findAllByStage(int stage);
-    Problem findByStageAndNumberAndProjectId(int stage,int number, int projectId);
 }
