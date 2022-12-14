@@ -165,7 +165,10 @@ public class ProblemService {
         result.put("statusList", statusList);
         return result;
     }
-
+    public Map<String, Object> solveWithModule(SolveRequest solveRequest){
+        Map<String, Object> result = new HashMap<>();
+        return result;
+    }
     private boolean getMapSolved(User user, int stage) {
         // get system-defined problem count
         int systemProblemCount = 0;
