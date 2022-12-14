@@ -11,7 +11,6 @@
         <output>3;8;1</output>
         <memory>0</memory>
         <worldInfo>-2;7;-87;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>繁忙的收发室</title>
@@ -26,7 +25,6 @@
         <output>I;N;I;T;I;A;L;I;Z;E</output>
         <memory>0</memory>
         <worldInfo>3.7;6;-120.7;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>复印楼层</title>
@@ -40,7 +38,6 @@ BUG
         <output>B;U;G</output>
         <memory>6;U;J;X;G;B;E</memory>
         <worldInfo>-70;7;-181.3;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>扰码处理器</title>
@@ -55,7 +52,6 @@ BUG
         <output>9;2;R;K;5;2</output>
         <memory>3;-;-;-</memory>
         <worldInfo>31;7;-172;-1.047</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>零扑灭行动</title>
@@ -69,7 +65,6 @@ BUG
         <output>4;-4;E;9</output>
         <memory>9;-;-;-;-;-;-;-;-;-</memory>
         <worldInfo>101;7;-145.6;1.57</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>多雨之夏</title>
@@ -83,7 +78,6 @@ BUG
         <output>11;6;0;-1</output>
         <memory>3;-;-;-</memory>
         <worldInfo>12.8;3;-459;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>八倍扩大装置</title>
@@ -95,7 +89,6 @@ BUG
         <output>24;-40;40;0</output>
         <memory>5;-;-;-;-;-</memory>
         <worldInfo>-80;3;-508;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>均衡之间</title>
@@ -107,7 +100,6 @@ BUG
         <output>6;-1</output>
         <memory>3;-;-;-</memory>
         <worldInfo>32.5;3;-565;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>专属休息室</title>
@@ -122,7 +114,6 @@ BUG
         <output>1;1;0;0</output>
         <memory>6;-;-;-;-;0;1</memory>
         <worldInfo>117.4;3;-460;-1.047</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>计时器</title>
@@ -136,7 +127,6 @@ BUG
         <output>6;5;4;3;2;1;0;-7;-6;-5;-4;-3;-2;-1;0;0;-7;-6;-5;-4;-3;-2;-1;0</output>
         <memory>10;-;-;-;-;-;-;-;-;-;-</memory>
         <worldInfo>145.2;3;-533;1.57</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>斐波那契参上</title>
@@ -150,7 +140,6 @@ BUG
         <output></output>
         <memory>10;-;-;-;-;-;-;-;-;-;0</memory>
         <worldInfo>-0.3;0;-59.2;0</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>累加的倒计时</title>
@@ -163,7 +152,6 @@ BUG
         <output>6;15;0;21</output>
         <memory>6;-;-;-;-;-;0</memory>
         <worldInfo>175;3;302;3.8</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>小试除法</title>
@@ -177,7 +165,6 @@ BUG
         <output>1;1;0;0</output>
         <memory>10;-;-;-;-;-;-;-;-;-;0</memory>
         <worldInfo>-142.6;3;238.5;1.57</worldInfo>
-        <projectId>000000</projectId>
     </problem>
     <problem>
         <title>数位炸弹</title>
@@ -190,6 +177,5 @@ BUG
         <output>4;7;0;2;3;8;1;6</output>
         <memory>12;-;-;-;-;-;-;-;-;-;0;10;100</memory>
         <worldInfo>0.04;0;369;3.1416</worldInfo>
-        <projectId>000000</projectId>
     </problem>
 </problemRepo>

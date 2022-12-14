@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class ProjectService {
@@ -28,7 +29,7 @@ public class ProjectService {
     private JwtTokenUtil jwtTokenUtil;
 
 
-    public Map<String, Object> project(ProjectRequest projectRequest) {
+    public Map<String, Object> projectCreate(ProjectRequest projectRequest) {
         Map<String, Object> result = new HashMap<>();
         String token = projectRequest.getToken();
         User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
@@ -38,7 +39,24 @@ public class ProjectService {
         }
         Project project = new Project(user.getId(),projectRequest.getTitle(),projectRequest.getDescription());
         projectRepository.save(project);
+        user.addProject(project);
+        userRepository.save(user);
         result.put("message", "Project created successfully");
+        return result;
+    }
+
+    public Map<String, Object> project(ProjectRequest projectRequest) {
+        Map<String, Object> result = new HashMap<>();
+        String token = projectRequest.getToken();
+        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        if (user == null) {
+            result.put("message", "User does not exist");
+            return result;
+        }
+        Set<Project> projects= user.getProjects();
+        for (Project project :projects){
+            result.put("message", project);
+        }
         return result;
     }
 }

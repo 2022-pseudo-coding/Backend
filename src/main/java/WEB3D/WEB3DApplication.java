@@ -7,23 +7,17 @@ import WEB3D.domain.User;
 import WEB3D.repository.AuthorityRepository;
 import WEB3D.repository.ProblemRepository;
 import WEB3D.repository.UserRepository;
-import com.corundumstudio.socketio.SocketIOServer;
 import org.dom4j.Node;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -100,12 +94,11 @@ public class WEB3DApplication {
                 String output = childNodes.item(nodeIndex.get(6)).getTextContent();
                 String memory = childNodes.item(nodeIndex.get(7)).getTextContent();
                 String worldInfo = childNodes.item(nodeIndex.get(8)).getTextContent();
-                int projectId  = Integer.parseInt(childNodes.item(nodeIndex.get(9)).getTextContent());
 
                 if (problemRepository.findByStageAndNumber(stage, number) != null) {
                     continue;
                 }
-                Problem problem = new Problem(projectId,stage, number, title, description, instructions, input, output, memory, worldInfo);
+                Problem problem = new Problem(stage, number, title, description, instructions, input, output, memory, worldInfo);
                 problemRepository.save(problem);
             }
         }

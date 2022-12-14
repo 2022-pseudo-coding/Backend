@@ -15,6 +15,10 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
+    @PostMapping("/projectCreate")
+    public ResponseEntity<?> projectCreate(@RequestBody ProjectRequest request) {
+        return ResponseEntity.ok(projectService.projectCreate(request));
+    }
     @PostMapping("/project")
     public ResponseEntity<?> project(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.project(request));

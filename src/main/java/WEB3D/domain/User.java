@@ -38,7 +38,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, Set<Authority> authorities){
+    public User(String username, String password, Set<Authority> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
@@ -121,7 +121,8 @@ public class User implements UserDetails {
     public Set<Project> getProjects() {
         return projects;
     }
-    public void addProjects(Project project){
+
+    public void addProject(Project project) {
         projects.add(project);
     }
 }

@@ -48,7 +48,11 @@ public class ProblemService {
         int projectId = Integer.parseInt(problemRequest.getProjectId());
         int stage = Integer.parseInt(problemRequest.getStage());
         int number = Integer.parseInt(problemRequest.getNumber());
-        Problem problem = problemRepository.findByStageAndNumberAndProjectId(stage, number, projectId);
+
+        Optional<Project> projectById = projectRepository.findById(projectId);
+        Project project = projectById.get();
+
+        Problem problem = project.getProblem(stage,number);
         if (problem != null) {
             result.put("problem", problem);
             result.put("message", "success");
@@ -111,7 +115,7 @@ public class ProblemService {
         List<Problem> problems = problemRepository.findAllByStage(stage);
         problems.sort(Comparator.comparingInt(Problem::getNumber));
         int currNumber = problems.get(problems.size() - 1).getNumber() + 1;
-        Problem newProblem = new Problem(projectId,
+        Problem newProblem = new Problem(
                 stage,
                 currNumber,
                 request.getTitle(),

@@ -1,7 +1,5 @@
 package WEB3D.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -12,7 +10,6 @@ public class Problem {
     private Long id;
 
 
-    private int projectId;
     private int stage;
     private int number;
     private String title;
@@ -39,8 +36,7 @@ public class Problem {
     public Problem() {
     }
 
-    public Problem(int projectId,int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory, String worldInfo) {
-        this.projectId = projectId;
+    public Problem(int stage, int number, String title, String description, List<Instruction> instructions, String input, String output, String memory, String worldInfo) {
         this.stage = stage;
         this.number = number;
         this.title = title;
@@ -50,10 +46,6 @@ public class Problem {
         this.output = output;
         this.memory = memory;
         this.worldInfo = worldInfo;
-    }
-
-    public int getProjectId() {
-        return projectId;
     }
 
     public int getStage() {

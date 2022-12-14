@@ -51,7 +51,17 @@ public class Project {
         this.problems.add(problem);
     }
 
-    private int getLength() {
+    public int getLength() {
         return this.problems.size();
+    }
+
+    public Problem getProblem(int stage, int number) {
+        Problem problem = new Problem();
+        for (Problem problem1 : problems) {
+            if (problem1.getStage() == stage && problem1.getNumber() == number) {
+                problem = problem1;
+            }
+        }
+        return problem;
     }
 }
