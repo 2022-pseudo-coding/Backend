@@ -172,18 +172,18 @@ public class ProblemService {
         }
         User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(request.getToken()));
         List<Instruction> instructions = request.getInstructions();
-        List<Instruction> instructionsForSolve =new ArrayList<>();
-        for(Instruction instruction:instructions){
-            Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(),instruction.getName());
-            if(findModule !=null){
-                instructionsForSolve.addAll(findModule.getInstructions());
-            }else{
-                instructionsForSolve.add(instruction);
-            }
-        }
+//        List<Instruction> instructionsForSolve =new ArrayList<>();
+//        for(Instruction instruction:instructions){
+//            Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(),instruction.getName());
+//            if(findModule !=null){
+//                instructionsForSolve.addAll(findModule.getInstructions());
+//            }else{
+//                instructionsForSolve.add(instruction);
+//            }
+//        }
         List<Status> statusList = new ArrayList<>();
         try {
-            statusList = Utils.execInstructions(problem, instructionsForSolve);
+            statusList = Utils.execInstructionsWithModule(problem, instructions,user.getId());
         } catch (Exception e) {
             result.put("message", e.getMessage());
             return result;
