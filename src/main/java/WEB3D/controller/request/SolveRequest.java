@@ -5,6 +5,7 @@ import WEB3D.domain.Instruction;
 import java.util.List;
 
 public class SolveRequest {
+    private String projectId;
     private String stage;
     private String number;
     private String token;
@@ -35,4 +36,6 @@ public class SolveRequest {
     public List<Instruction> getInstructions() {
         return instructions;
     }
+
+    public String getProjectId(){return projectId;}
 }

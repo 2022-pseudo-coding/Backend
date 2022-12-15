@@ -2,7 +2,6 @@ package WEB3D.service;
 
 import WEB3D.controller.request.UserDefineModuleRequest;
 import WEB3D.domain.Module;
-import WEB3D.domain.Project;
 import WEB3D.domain.User;
 import WEB3D.repository.ModuleRepository;
 import WEB3D.repository.ProjectRepository;
@@ -35,14 +34,16 @@ public class ModuleService {
             result.put("message", "User does not exist");
             return result;
         }
-
-        Module newModule=new Module(request.getTitle(),request.getDescription());
+        Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(), request.getName());
+        if(findModule!=null){
+            result.put("message","moduleName " + request.getName() + " already exists");
+            return result;
+        }
+        Module newModule=new Module(user.getId(),request.getName(),request.getColor());
+        newModule.setInstructions(request.getInstructions());
         moduleRepository.save(newModule);
         result.put("message","success");
 
-//        Project project=user.getProjects().get(request.getProjectNumber()-1);
-//        project.getModules().add(newModule);
-//        projectRepository.save(project);
 
         return result;
     }
