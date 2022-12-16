@@ -1,8 +1,11 @@
 package WEB3D.service;
 
 import WEB3D.common.Utils;
+import WEB3D.controller.request.ModuleRequest;
+import WEB3D.controller.request.SolveModuleRequest;
 import WEB3D.controller.request.UserDefineModuleRequest;
 import WEB3D.domain.Module;
+import WEB3D.domain.Problem;
 import WEB3D.domain.User;
 import WEB3D.repository.ModuleRepository;
 import WEB3D.repository.ProjectRepository;
@@ -49,6 +52,33 @@ public class ModuleService {
         result.put("message","success");
 
 
+        return result;
+    }
+    public Map<String, Object> module(ModuleRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        String token = request.getToken();
+        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        if (user == null) {
+            result.put("message", "User does not exist");
+            return result;
+        }
+        Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(),request.getName());
+        if(findModule==null){
+            result.put("message","Module does not exist");
+            return result;
+        }
+        result.put("instructions",findModule.getInstructions());
+        result.put("message","success");
+        return result;
+    }
+    public Map<String, Object> solveModule(SolveModuleRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        String input=String.join(";",request.getInput());
+        String memory=String.join(";",request.getMemory());
+        Problem problem=new Problem();
+        problem.setMemory(memory);
+        problem.setInput(input);
+        result.put("statusList", Utils.execInstructionsForModule(problem,request.getInstructions()));
         return result;
     }
 }

@@ -99,4 +99,12 @@ public class Problem {
     public String getWorldInfo() {
         return worldInfo;
     }
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public void setMemory(String memory) {
+        this.memory = memory;
+    }
 }

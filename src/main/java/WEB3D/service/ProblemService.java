@@ -152,58 +152,7 @@ public class ProblemService {
         return result;
     }
 
-//    public Map<String,Object> solveWithModule(SolveRequest request){
-//        Map<String, Object> result = new HashMap<>();
-//        if (!isNumeric(request.getStage()) || !isNumeric(request.getNumber())) {
-//            result.put("message", "bad argument");
-//            return result;
-//        }
-//        int projectId = Integer.parseInt(request.getProjectId());
-//        int stage = Integer.parseInt(request.getStage());
-//        int number = Integer.parseInt(request.getNumber());
-//
-//        Optional<Project> projectById = projectRepository.findById(projectId);
-//        Project project = projectById.get();
-//
-//        Problem problem = project.getProblem(stage,number);
-//        if (problem == null) {
-//            result.put("message", "problem not found");
-//            return result;
-//        }
-//        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(request.getToken()));
-//        List<Instruction> instructions = request.getInstructions();
-//        List<Object> instructionWithModule=new ArrayList<>();
-//        for(Instruction instruction:instructions){
-//            Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(),instruction.getName());
-//            if(findModule!=null){
-//                instructionWithModule.add(findModule);
-//            }else{
-//                instructionWithModule.add(instruction);
-//            }
-//        }
-//        List<Status> statusList = new ArrayList<>();
-//        try {
-//            statusList = Utils.execInstructionsWithModule(problem, instructions,user.getId());
-//        } catch (Exception e) {
-//            result.put("message", e.getMessage());
-//            return result;
-//        }
-//        Status finalStatus = statusList.get(statusList.size() - 1);
-//        if (finalStatus.getFinishStatusMsg().equals("success!")) {
-//            int steps = finalStatus.getSteps();
-//            Solution solution = new Solution(stage, number, steps, instructions.size(), instructions);
-//            user.addSolution(solution);
-//            userRepository.save(user);
-//            problem.addSolution(solution);
-//            problemRepository.save(problem);
-//            result.put("message", "success");
-//            result.put("mapSolved", getMapSolved(user, stage));
-//        } else
-//            result.put("message", finalStatus.getFinishStatusMsg());
-//
-//        result.put("statusList", statusList);
-//        return result;
-//    }
+
     public Map<String, Object> solve(SolveRequest solveRequest) {
         Map<String, Object> result = new HashMap<>();
         if (!isNumeric(solveRequest.getStage()) || !isNumeric(solveRequest.getNumber())) {
