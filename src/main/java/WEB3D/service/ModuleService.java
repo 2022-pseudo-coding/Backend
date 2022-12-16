@@ -1,5 +1,6 @@
 package WEB3D.service;
 
+import WEB3D.common.Utils;
 import WEB3D.controller.request.UserDefineModuleRequest;
 import WEB3D.domain.Module;
 import WEB3D.domain.User;
@@ -37,6 +38,9 @@ public class ModuleService {
         Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(), request.getName());
         if(findModule!=null){
             result.put("message","moduleName " + request.getName() + " already exists");
+            return result;
+        }else if(Utils.isBasicInstruction(request.getName())){
+            result.put("message","moduleName " + request.getName() + "conflicts with basic instruction ");
             return result;
         }
         Module newModule=new Module(user.getId(),request.getName(),request.getColor());

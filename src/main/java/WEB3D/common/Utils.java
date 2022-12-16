@@ -17,7 +17,28 @@ public class Utils {
     @Autowired
     private static ModuleRepository moduleRepository;
 
-
+    public static boolean isBasicInstruction(String name) {
+        List<String> basicInstructionNames=new ArrayList<>();
+        basicInstructionNames.add("add");
+        basicInstructionNames.add("sub");
+        basicInstructionNames.add("inbox");
+        basicInstructionNames.add("outbox");
+        basicInstructionNames.add("copyfrom");
+        basicInstructionNames.add("copyto");
+        basicInstructionNames.add("bump+");
+        basicInstructionNames.add("bump-");
+        basicInstructionNames.add("jump");
+        basicInstructionNames.add("jump_zero");
+        basicInstructionNames.add("jump_neg");
+        boolean exist=false;
+        for(String basicInstructionName:basicInstructionNames){
+            if(name.equals(basicInstructionName)){
+                exist=true;
+                break;
+            }
+        }
+        return  exist;
+    }
     public static boolean registerIsInvalid(RegisterRequest registerRequest){
         return isUserInvalid(registerRequest.getUsername(), registerRequest.getPassword());
     }
