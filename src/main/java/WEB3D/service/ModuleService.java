@@ -40,7 +40,7 @@ public class ModuleService {
             result.put("message","moduleName " + request.getName() + " already exists");
             return result;
         }else if(Utils.isBasicInstruction(request.getName())){
-            result.put("message","moduleName " + request.getName() + "conflicts with basic instruction ");
+            result.put("message","moduleName " + request.getName() + " conflicts with basic instruction ");
             return result;
         }
         Module newModule=new Module(user.getId(),request.getName(),request.getColor());
