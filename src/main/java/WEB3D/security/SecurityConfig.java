@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/register")
                 .permitAll()
-                .antMatchers("/changePassword", "/center", "/problem", "/mapProblems", "/userDefine", "/solve","/userDefineModule")
+                .antMatchers("/changePassword", "/center", "/problem", "/mapProblems", "/userDefine", "/solve","/userDefineModule","/projectCreate","/project")
                 .hasAnyAuthority("User")
                 .antMatchers("/admin/**")
                 .hasAnyAuthority("Admin")
