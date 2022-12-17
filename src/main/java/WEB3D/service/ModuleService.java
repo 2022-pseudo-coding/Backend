@@ -14,7 +14,9 @@ import WEB3D.security.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -62,12 +64,13 @@ public class ModuleService {
             result.put("message", "User does not exist");
             return result;
         }
-        Module findModule=moduleRepository.findByCreatorIdAndName(user.getId(),request.getName());
-        if(findModule==null){
-            result.put("message","Module does not exist");
+        List<Module> modules=moduleRepository.findAllByCreatorId(user.getId());
+        if(modules==null){
+            result.put("modules",new ArrayList<Module>());
+            result.put("message","success");
             return result;
         }
-        result.put("instructions",findModule.getInstructions());
+        result.put("modules",modules);
         result.put("message","success");
         return result;
     }
