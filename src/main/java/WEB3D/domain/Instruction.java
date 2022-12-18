@@ -6,10 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Instruction extends Action{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+public class Instruction extends Action {
 
     private String name;
 
@@ -25,19 +22,26 @@ public class Instruction extends Action{
     public Instruction(String name, int to) {
         this(name);
         switch (name) {
-            case "copyfrom" : {}
-            case "copyto" : {}
-            case "add" : {}
-            case "sub" : {}
-            case "bump+" : {}
-            case "bump-" : {
+            case "copyfrom": {
+            }
+            case "copyto": {
+            }
+            case "add": {
+            }
+            case "sub": {
+            }
+            case "bump+": {
+            }
+            case "bump-": {
                 this.referTo = to;
                 this.jumpTo = -1;
                 break;
             }
-            case "jump" : {}
-            case "jump_zero" : {}
-            case "jump_neg" : {
+            case "jump": {
+            }
+            case "jump_zero": {
+            }
+            case "jump_neg": {
                 this.jumpTo = to;
                 this.referTo = -1;
                 break;
@@ -52,26 +56,33 @@ public class Instruction extends Action{
     public Instruction(String name) {
         this.name = name;
         switch (name) {
-            case "inbox" : {}
-            case "outbox" : {
+            case "inbox": {
+            }
+            case "outbox": {
                 this.color = "green";
                 break;
             }
-            case "copyfrom" : {}
-            case "copyto" : {
+            case "copyfrom": {
+            }
+            case "copyto": {
                 this.color = "red";
                 break;
             }
-            case "add" : {}
-            case "sub" : {}
-            case "bump+" : {}
-            case "bump-" : {
+            case "add": {
+            }
+            case "sub": {
+            }
+            case "bump+": {
+            }
+            case "bump-": {
                 this.color = "orange";
                 break;
             }
-            case "jump" : {}
-            case "jump_zero" : {}
-            case "jump_neg" : {
+            case "jump": {
+            }
+            case "jump_zero": {
+            }
+            case "jump_neg": {
                 this.color = "blue";
                 break;
             }
@@ -79,7 +90,6 @@ public class Instruction extends Action{
         this.jumpTo = -1;
         this.referTo = -1;
     }
-
 
 
     public void setName(String name) {

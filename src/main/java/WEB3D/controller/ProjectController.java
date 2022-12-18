@@ -20,14 +20,17 @@ public class ProjectController {
     public ResponseEntity<?> projectCreate(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectCreate(request));
     }
+
     @PostMapping("/projectByUser")
     public ResponseEntity<?> projectByUser(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectByUser(request));
     }
+
     @PostMapping("/projectById")
     public ResponseEntity<?> projectById(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectById(request));
     }
+
     @PostMapping("/solveProject")
     public ResponseEntity<?> solveProject(@RequestBody SolveModuleRequest request) {
         return ResponseEntity.ok(projectService.solveProject(request));

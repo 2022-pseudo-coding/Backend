@@ -13,8 +13,6 @@ public class Project {
     private Long creatorId;
     private String title;
     private String description;
-//    @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private List<Instruction> instructions = new ArrayList<>();
 
     @OneToMany(targetEntity = Action.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Action> actions = new ArrayList<>();
@@ -23,7 +21,7 @@ public class Project {
     }
 
 
-    public Project(Long creatorId, String title, String description,List<Action> actions) {
+    public Project(Long creatorId, String title, String description, List<Action> actions) {
         this.creatorId = creatorId;
         this.title = title;
         this.description = description;

@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Module extends Action{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+public class Module extends Action {
+
     private Long creatorId;
     private String name;
     private String color;
@@ -16,10 +14,10 @@ public class Module extends Action{
     @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Instruction> instructions = new ArrayList<>();
 
-    public Module(Long creatorId,String name, String color) {
+    public Module(Long creatorId, String name, String color) {
         this.creatorId = creatorId;
         this.name = name;
-        this.color= color;
+        this.color = color;
     }
 
     public Module() {
