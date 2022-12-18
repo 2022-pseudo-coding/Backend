@@ -6,10 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Instruction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Instruction extends Action{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
 
     private String name;
 
@@ -80,12 +80,18 @@ public class Instruction {
         this.referTo = -1;
     }
 
-    public Long getId() {
-        return id;
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getColor() {
@@ -96,7 +102,15 @@ public class Instruction {
         return referTo;
     }
 
+    public void setReferTo(int referTo) {
+        this.referTo = referTo;
+    }
+
     public int getJumpTo() {
         return jumpTo;
+    }
+
+    public void setJumpTo(int jumpTo) {
+        this.jumpTo = jumpTo;
     }
 }

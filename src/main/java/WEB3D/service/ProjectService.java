@@ -1,6 +1,9 @@
 package WEB3D.service;
 
+import WEB3D.common.Utils;
 import WEB3D.controller.request.ProjectRequest;
+import WEB3D.controller.request.SolveModuleRequest;
+import WEB3D.domain.Problem;
 import WEB3D.domain.Project;
 import WEB3D.domain.User;
 import WEB3D.repository.ProjectRepository;
@@ -37,7 +40,8 @@ public class ProjectService {
             result.put("message", "User does not exist");
             return result;
         }
-        Project project = new Project(user.getId(),projectRequest.getTitle(),projectRequest.getDescription());
+        Project project = new Project(user.getId(), projectRequest.getTitle(), projectRequest.getDescription(),
+                projectRequest.getInstructions(), projectRequest.getActions());
         projectRepository.save(project);
         user.addProject(project);
         userRepository.save(user);
@@ -53,10 +57,21 @@ public class ProjectService {
             result.put("message", "User does not exist");
             return result;
         }
-        Set<Project> projects= user.getProjects();
-        for (Project project :projects){
+        Set<Project> projects = user.getProjects();
+        for (Project project : projects) {
             result.put("message", project);
         }
+        return result;
+    }
+
+    public Map<String, Object> solveProject(SolveModuleRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        String input=String.join(";",request.getInput());
+        String memory=String.join(";",request.getMemory());
+        Problem problem=new Problem();
+        problem.setMemory(memory);
+        problem.setInput(input);
+        result.put("statusList", Utils.execInstructionsForModule(problem,request.getInstructions()));
         return result;
     }
 }

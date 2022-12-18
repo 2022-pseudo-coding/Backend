@@ -60,28 +60,6 @@ public class ProblemService {
         return result;
     }
 
-    public Map<String, Object> problemWithId(ProblemRequest problemRequest) {
-        Map<String, Object> result = new HashMap<>();
-        if (!isNumeric(problemRequest.getStage()) || !isNumeric(problemRequest.getNumber())) {
-            result.put("message", "bad argument");
-            return result;
-        }
-        int projectId = Integer.parseInt(problemRequest.getProjectId());
-        int stage = Integer.parseInt(problemRequest.getStage());
-        int number = Integer.parseInt(problemRequest.getNumber());
-
-        Optional<Project> projectById = projectRepository.findById(projectId);
-        Project project = projectById.get();
-
-        Problem problem = project.getProblem(stage,number);
-        if (problem != null) {
-            result.put("problem", problem);
-            result.put("message", "success");
-        } else {
-            result.put("message", "problem not found");
-        }
-        return result;
-    }
 
     public Map<String, Object> mapProblems(MapSolvedRequest mapSolvedRequest) {
         Map<String, Object> result = new HashMap<>();
@@ -110,10 +88,6 @@ public class ProblemService {
         Map<String, Object> result = new HashMap<>();
         String token = request.getToken();
         int stage = request.getStage();
-        int projectId = request.getProjectId();
-
-        Optional<Project> projectById = projectRepository.findById(projectId);
-        Project project = projectById.get();
 
         String instructions = request.getInstructions();
         String[] instructionNames = instructions.split(";");
@@ -145,8 +119,6 @@ public class ProblemService {
                 request.getInput(), request.getOutput(), request.getMemory(), request.getWorldInfo());
         newProblem.setIfUserDefined(true);
         problemRepository.save(newProblem);
-        project.addProblem(newProblem);
-        projectRepository.save(project);
         result.put("message", "success");
         result.put("name", newProblem.getStage() + "-" + newProblem.getNumber());
         return result;

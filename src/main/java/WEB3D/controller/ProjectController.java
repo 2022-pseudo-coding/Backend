@@ -1,6 +1,7 @@
 package WEB3D.controller;
 
 import WEB3D.controller.request.ProjectRequest;
+import WEB3D.controller.request.SolveModuleRequest;
 import WEB3D.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,5 +23,9 @@ public class ProjectController {
     @PostMapping("/project")
     public ResponseEntity<?> project(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.project(request));
+    }
+    @PostMapping("/solveProject")
+    public ResponseEntity<?> solveProject(@RequestBody SolveModuleRequest request) {
+        return ResponseEntity.ok(projectService.solveProject(request));
     }
 }

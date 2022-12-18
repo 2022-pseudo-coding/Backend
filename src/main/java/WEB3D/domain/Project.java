@@ -13,17 +13,22 @@ public class Project {
     private Long creatorId;
     private String title;
     private String description;
-    @OneToMany(targetEntity = Problem.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Problem> problems = new ArrayList<>();
+    @OneToMany(targetEntity = Instruction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Instruction> instructions = new ArrayList<>();
+
+    @OneToMany(targetEntity = Action.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Action> actions = new ArrayList<>();
 
     public Project() {
     }
 
 
-    public Project(Long creatorId, String title, String description) {
+    public Project(Long creatorId, String title, String description,List<Instruction> instructions,List<Action> actions) {
         this.creatorId = creatorId;
         this.title = title;
         this.description = description;
+        this.instructions = instructions;
+        this.actions = actions;
     }
 
 
@@ -43,25 +48,11 @@ public class Project {
         return description;
     }
 
-    public List<Problem> getProblems() {
-        return problems;
+    public List<Instruction> getInstructions() {
+        return instructions;
     }
 
-    public void addProblem(Problem problem) {
-        this.problems.add(problem);
-    }
-
-    public int getLength() {
-        return this.problems.size();
-    }
-
-    public Problem getProblem(int stage, int number) {
-        Problem problem = new Problem();
-        for (Problem problem1 : problems) {
-            if (problem1.getStage() == stage && problem1.getNumber() == number) {
-                problem = problem1;
-            }
-        }
-        return problem;
+    public List<Action> getActions() {
+        return actions;
     }
 }
