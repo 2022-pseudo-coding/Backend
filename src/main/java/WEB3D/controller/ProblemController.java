@@ -42,6 +42,11 @@ public class ProblemController {
         return ResponseEntity.ok(problemService.mapProblems(request));
     }
 
+    @PostMapping("/stages")
+    public ResponseEntity<?> stages(@RequestBody MapSolvedRequest request) {
+        return ResponseEntity.ok(problemService.stages(request.getToken()));
+    }
+
     @PostMapping("/userDefine")
     public ResponseEntity<?> userDefine(@RequestBody UserDefineRequest request){
         return ResponseEntity.ok(problemService.userDefine(request));

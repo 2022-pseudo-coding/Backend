@@ -1,6 +1,5 @@
 package WEB3D.controller;
 
-import WEB3D.controller.request.ModuleRequest;
 import WEB3D.controller.request.SolveModuleRequest;
 import WEB3D.controller.request.UserDefineModuleRequest;
 import WEB3D.service.ModuleService;
@@ -17,14 +16,21 @@ public class ModuleController {
         this.moduleService = moduleService;
     }
 
-    @PostMapping("/userDefineModule")
-    public ResponseEntity<?> problem(@RequestBody UserDefineModuleRequest request) {
-        return ResponseEntity.ok(moduleService.userDefineModule(request));
+    @PostMapping("/module/create")
+    public ResponseEntity<?> createModule(@RequestBody UserDefineModuleRequest request) {
+        return ResponseEntity.ok(moduleService.moduleCreate(request));
     }
-    @PostMapping("/module")
-    public ResponseEntity<?> problem(@RequestBody ModuleRequest request) {
-        return ResponseEntity.ok(moduleService.module(request));
+
+    @PostMapping("/module/update")
+    public ResponseEntity<?> updateModule(@RequestBody UserDefineModuleRequest request) {
+        return ResponseEntity.ok(moduleService.moduleUpdate(request));
     }
+
+    @PostMapping("/module/name")
+    public ResponseEntity<?> getModule(@RequestBody UserDefineModuleRequest request) {
+        return ResponseEntity.ok(moduleService.moduleName(request));
+    }
+
     @PostMapping("/solveModule")
     public ResponseEntity<?> problem(@RequestBody SolveModuleRequest request) {
         return ResponseEntity.ok(moduleService.solveModule(request));

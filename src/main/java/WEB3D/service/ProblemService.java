@@ -41,6 +41,24 @@ public class ProblemService {
         this.moduleRepository = moduleRepository;
     }
 
+    public Map<String, Object> stages(String token) {
+        Map<String, Object> result = new HashMap<>();
+        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        if (user == null) {
+            result.put("message", "User does not exist");
+            return result;
+        }
+        List<Stage> stages = new ArrayList<>(Arrays.asList(
+                new Stage("Easy", problemRepository.findAllByStage(1)),
+                new Stage("Moderate", problemRepository.findAllByStage(2)),
+                new Stage("Hard", problemRepository.findAllByStage(3)),
+                new Stage("Users' Creation", problemRepository.findAllByStage(4))
+                ));
+        result.put("stages",stages);
+        result.put("mySolutions", user.getSolutions());
+        return result;
+    }
+
     public Map<String, Object> problem(ProblemRequest problemRequest) {
         Map<String, Object> result = new HashMap<>();
         if (!isNumeric(problemRequest.getStage()) || !isNumeric(problemRequest.getNumber())) {
@@ -49,8 +67,7 @@ public class ProblemService {
         }
         int stage = Integer.parseInt(problemRequest.getStage());
         int number = Integer.parseInt(problemRequest.getNumber());
-
-        Problem problem = problemRepository.findByStageAndNumber(stage,number);
+        Problem problem = problemRepository.findByStageAndNumber(stage, number);
         if (problem != null) {
             result.put("problem", problem);
             result.put("message", "success");
@@ -102,14 +119,10 @@ public class ProblemService {
             result.put("message", "User does not exist");
             return result;
         }
-        if (stage < 1 || stage > 3) {
-            result.put("message", "Invalid stage number");
-            return result;
-        }
 
         List<Problem> problems = problemRepository.findAllByStage(stage);
         problems.sort(Comparator.comparingInt(Problem::getNumber));
-        int currNumber = problems.get(problems.size() - 1).getNumber() + 1;
+        int currNumber = problems.isEmpty() ? 1 :problems.get(problems.size() - 1).getNumber() + 1;
         Problem newProblem = new Problem(
                 stage,
                 currNumber,

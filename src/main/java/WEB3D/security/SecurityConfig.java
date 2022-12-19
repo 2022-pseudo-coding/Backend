@@ -43,10 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/register")
                 .permitAll()
-                .antMatchers("/changePassword", "/center", "/problem", "/mapProblems", "/userDefine", "/solve","/userDefineModule","/projectCreate","/module","/project","/problemWithId","/solveModule")
+                .antMatchers("/changePassword", "/center", "/problem", "/mapProblems", "/userDefine", "/solve","/project","/problemWithId","/solveModule")
+                .hasAnyAuthority("User")
+                .antMatchers("/module/**", "/project/**")
                 .hasAnyAuthority("User")
                 .antMatchers("/admin/**")
-                .hasAnyAuthority("Admin")
+                .hasAnyAuthority("User", "Admin")
                 //后续会更改为管理员才可上传
                 /*.antMatchers("/**")
                 .permitAll()*/

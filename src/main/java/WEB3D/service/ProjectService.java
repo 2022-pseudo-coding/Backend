@@ -43,7 +43,25 @@ public class ProjectService {
             return result;
         }
         Project project = new Project(user.getId(), projectRequest.getTitle(), projectRequest.getDescription(),
-                projectRequest.getActions());
+                new ArrayList<>());
+        projectRepository.save(project);
+        user.addProject(project);
+        userRepository.save(user);
+        result.put("message", "Project created successfully");
+        result.put("id", project.getId());
+        return result;
+    }
+
+    public Map<String, Object> projectUpdate(ProjectRequest projectRequest) {
+        Map<String, Object> result = new HashMap<>();
+        String token = projectRequest.getToken();
+        User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        if (user == null) {
+            result.put("message", "User does not exist");
+            return result;
+        }
+        Project project = projectRepository.getOne(projectRequest.getId());
+        project.setActions(projectRequest.getActions());
         projectRepository.save(project);
         user.addProject(project);
         userRepository.save(user);
@@ -60,9 +78,15 @@ public class ProjectService {
             return result;
         }
         Set<Project> projects = user.getProjects();
-        for (Project project : projects) {
-            result.put("message", project);
+        List<Module> modules = moduleRepository.findAllByCreatorId(user.getId());
+        if (modules == null) {
+            result.put("modules", new ArrayList<Module>());
+            result.put("message", "success");
+            return result;
         }
+        result.put("modules", modules);
+        result.put("message", "success");
+        result.put("projects", projects);
         return result;
     }
 
@@ -75,19 +99,7 @@ public class ProjectService {
             return result;
         }
         Project project = projectRepository.getOne(projectRequest.getId());
-        List<Action> actions = project.getActions();
-        Instruction instruction = null;
-        Module module = null;
-        for (Action action : actions) {
-            if (instructionRepository.existsById(action.getId())) {
-                instruction = instructionRepository.getOne(action.getId());
-                result.put("message", instruction);
-            }
-            if (moduleRepository.existsById(action.getId())) {
-                module = moduleRepository.getOne(action.getId());
-                result.put("message", module);
-            }
-        }
+        result.put("project", project);
         return result;
     }
 

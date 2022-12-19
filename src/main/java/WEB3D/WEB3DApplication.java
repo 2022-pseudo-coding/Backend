@@ -71,7 +71,9 @@ public class WEB3DApplication {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = factory.newDocumentBuilder();
-            Document doc = db.parse("./src/main/resources/ProblemConfig.xml");
+//            deploy
+            Document doc = db.parse("classpath:/ProblemConfig.xml");
+//            Document doc = db.parse("./src/main/resources/ProblemConfig.xml");
             NodeList problemList = doc.getElementsByTagName("problem");
             for (int i = 0; i < problemList.getLength(); i++) {
                 NodeList childNodes = problemList.item(i).getChildNodes();

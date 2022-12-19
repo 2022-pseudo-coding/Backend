@@ -16,22 +16,27 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @PostMapping("/projectCreate")
+    @PostMapping("/project/create")
     public ResponseEntity<?> projectCreate(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectCreate(request));
     }
 
-    @PostMapping("/projectByUser")
+    @PostMapping("/project/update")
+    public ResponseEntity<?> projectUpdate(@RequestBody ProjectRequest request) {
+        return ResponseEntity.ok(projectService.projectUpdate(request));
+    }
+
+    @PostMapping("/project/user")
     public ResponseEntity<?> projectByUser(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectByUser(request));
     }
 
-    @PostMapping("/projectById")
+    @PostMapping("/project/id")
     public ResponseEntity<?> projectById(@RequestBody ProjectRequest request) {
         return ResponseEntity.ok(projectService.projectById(request));
     }
 
-    @PostMapping("/solveProject")
+    @PostMapping("/project/solve")
     public ResponseEntity<?> solveProject(@RequestBody SolveModuleRequest request) {
         return ResponseEntity.ok(projectService.solveProject(request));
     }

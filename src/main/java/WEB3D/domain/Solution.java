@@ -45,6 +45,10 @@ public class Solution {
         return numInst;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public List<Instruction> getInstructions() {
         return new ArrayList<>(instructions);
     }

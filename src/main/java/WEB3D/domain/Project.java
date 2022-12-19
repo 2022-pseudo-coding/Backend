@@ -48,4 +48,8 @@ public class Project {
     public List<Action> getActions() {
         return actions;
     }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
 }

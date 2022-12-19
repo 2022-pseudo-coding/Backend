@@ -137,7 +137,7 @@ BUG
         <number>1</number>
         <instructions>inbox;outbox;copyfrom;copyto;add;sub;bump+;bump-;jump;jump_zero;jump_neg</instructions>
         <input>6;21</input>
-        <output></output>
+        <output>1;1;2;3;5;1;1;2;3;5;8;13;21</output>
         <memory>10;-;-;-;-;-;-;-;-;-;0</memory>
         <worldInfo>-0.3;0;-59.2;0</worldInfo>
     </problem>
