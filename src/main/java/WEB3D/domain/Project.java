@@ -14,12 +14,11 @@ public class Project {
     private String title;
     private String description;
 
-    @OneToMany(targetEntity = Action.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Action.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Action> actions = new ArrayList<>();
 
     public Project() {
     }
-
 
     public Project(Long creatorId, String title, String description, List<Action> actions) {
         this.creatorId = creatorId;

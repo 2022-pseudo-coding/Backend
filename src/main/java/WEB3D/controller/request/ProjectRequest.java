@@ -2,6 +2,7 @@ package WEB3D.controller.request;
 
 import WEB3D.domain.Action;
 import WEB3D.domain.Instruction;
+import WEB3D.domain.Module;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,8 @@ public class ProjectRequest {
     private String title;
     private String description;
     private List<Instruction> instructions = new ArrayList<>();
-    private List<Action> actions = new ArrayList<>();
+    private List<Module> modules = new ArrayList<>();
+    private List<Boolean> isModules = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -34,7 +36,11 @@ public class ProjectRequest {
         return instructions;
     }
 
-    public List<Action> getActions() {
-        return actions;
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public List<Boolean> getIsModules() {
+        return isModules;
     }
 }

@@ -19,6 +19,13 @@ public class Instruction extends Action {
     public Instruction() {
     }
 
+    public Instruction(String name, String color, int referTo, int jumpTo) {
+        this.name = name;
+        this.color = color;
+        this.referTo = referTo;
+        this.jumpTo = jumpTo;
+    }
+
     public Instruction(String name, int to) {
         this(name);
         switch (name) {

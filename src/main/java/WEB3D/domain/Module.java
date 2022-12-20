@@ -44,4 +44,8 @@ public class Module extends Action {
     public Long getCreatorId() {
         return creatorId;
     }
+
+    public void addInstruction(Instruction instruction){
+        this.instructions.add(instruction);
+    }
 }

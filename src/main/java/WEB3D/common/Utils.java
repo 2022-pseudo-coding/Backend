@@ -81,21 +81,7 @@ public class Utils {
         List<String> output = new ArrayList<>();
         List<String> answer = new ArrayList<>(Arrays.asList(problem.getOutput().split(";")));
 
-        String[] temp = problem.getMemory().split(";");
-        int length = Integer.parseInt(temp[0]);
-        String[] memory;
-        if (length == 0) {
-            memory = null;
-        }
-        else {
-            memory = new String[length];
-            for (int i = 0; i < memory.length; i++) {
-                if (temp[i + 1].equals("-"))
-                    memory[i] = null;
-                else
-                    memory[i] = temp[i + 1];
-            }
-        }
+        String[] memory = problem.getMemory().split(";");
 
         int steps = 0;
         int inst_index = 0;
@@ -305,21 +291,7 @@ public class Utils {
         List<String> input = new ArrayList<>(Arrays.asList(problem.getInput().split(";")));
         List<String> output = new ArrayList<>();
 
-        String[] temp = problem.getMemory().split(";");
-        int length = Integer.parseInt(temp[0]);
-        String[] memory;
-        if (length == 0) {
-            memory = null;
-        }
-        else {
-            memory = new String[length];
-            for (int i = 0; i < memory.length; i++) {
-                if (temp[i + 1].equals("-"))
-                    memory[i] = null;
-                else
-                    memory[i] = temp[i + 1];
-            }
-        }
+        String[] memory = problem.getMemory().split(";");
 
         int steps = 0;
         int inst_index = 0;
